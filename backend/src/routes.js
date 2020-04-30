@@ -1,18 +1,27 @@
 const express = require('express');
-const authMiddleware = require("./middlewares/auth")
 
-const userController = require('./controllers/UserController')
-const imageController = require('./controllers/Image')
+const userController = require('./controllers/UserController');
+const sessionController = require('./controllers/SessionController');
+const catalogueController = require('./controllers/CatalogueController');
+
 
 const routes = express.Router()
 const multer = require('multer');
 const multerConfig = require('./config/multer')
 
+const authMiddleware = require("./middlewares/auth")
+//user
 routes.post('/register', userController.create);
 routes.get('/index', userController.index);
+routes.delete('/delete', userController.delete);
+//session
+routes.post('/session', sessionController.create);
+//catalogue
+routes.post('/createProduct', multer(multerConfig).single('file'), authMiddleware, catalogueController.create)
+routes.get('/products', catalogueController.index)
+routes.get('/product/:id', catalogueController.indexProduct)
+routes.delete('/deletecat/:id', authMiddleware, catalogueController.delete)
 
-routes.post('/post', multer(multerConfig).single('file'), imageController.create)
-routes.get('/images', imageController.index)
-routes.delete('/deleteimages/:id', imageController.delete)
+//services
 
 module.exports = (routes);
