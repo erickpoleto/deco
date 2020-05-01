@@ -1,0 +1,39 @@
+.header-container{
+    background-color: #535353;
+}
+.header-container main {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-container main nav strong{
+    margin-left: 20px;
+    padding: 10px;
+
+    font-weight: 200;
+
+    border: 2px solid white;
+    border-radius: 5px;
+
+    transition: 0.4s all;
+}
+.header-container main nav strong:hover{
+    background-color: rgba(255,255,255,0.4);
+}
+.header-container main div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header-container main nav+nav{
+    background-color: #0e6ae2;
+    padding: 25px 20px;
+}
+
+.header-container main nav+nav a{
+    color: white;
+    margin: 0 10px;
+} 

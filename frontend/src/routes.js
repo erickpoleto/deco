@@ -3,8 +3,11 @@ import { isAuthenticated } from './services/auth'
 
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 
-import Main from './pages/main';
+import Home from './pages/home';
 import Product from './pages/product';
+
+import Header from './components/Header/index'
+import Footer from './components/Footer/index'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -22,10 +25,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 export default function Router() {
     return(
         <BrowserRouter>
+            <Header></Header>
             <Switch>
-                <Route path="/" exact component={Main}/>
+                <Route path="/" exact component={Home}/>
                 <Route path="/product/:id" exact component={Product}/>
             </Switch>
+            <Footer></Footer>
         </BrowserRouter>
     );
 }

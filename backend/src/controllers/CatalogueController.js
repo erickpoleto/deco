@@ -19,7 +19,16 @@ module.exports = {
     async index(req, res){
         const {page} = req.query
         try{
-            const catalogue = await Catalogue.paginate({}, {populate:'idImage', page:page, limit: 10});
+            const catalogue = await Catalogue.paginate({}, {populate:'idImage', page:page, limit: 12});
+            return res.json(catalogue)
+        }catch(e){
+            return res.json({error: e})
+        }
+           
+    },
+    async indexDistinct(req, res){
+        try{
+            const catalogue = await Catalogue.find({}).distinct('category');
             return res.json(catalogue)
         }catch(e){
             return res.json({error: e})
