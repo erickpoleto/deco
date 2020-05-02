@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
+import Carousel from 'react-bootstrap/Carousel'
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import api from "../../services/api";
 import image from '../../imgs/pp.png'
@@ -48,6 +49,16 @@ export default class Home extends Component {
     render(){
         
         const {products, category, productInfo, page} = this.state;
+        const comments = [
+            {
+                comment: "perfeito, melhor trabalho que ja recebi, empresa extremamente profissional",
+                name: "erick"
+            },
+            {
+                comment: "showshowshow",
+                name: "joao"
+            }
+        ]
         return( 
             <div className="home-container">
                 <header>
@@ -66,13 +77,21 @@ export default class Home extends Component {
                         </div>
                     </div>
                     <div className="comments-div">
-                        <button><FaChevronLeft size={30} color={'white'}></FaChevronLeft></button>
                         <div>
-                            <p>texto qualquer</p>
-                            <strong>-owner</strong>
-                            <p style={{textAlign:"center"}}>...</p>
+                            <Carousel>
+                                {comments.map(comment=>{
+                                    return(
+                                        <Carousel.Item>
+                                            <Carousel.Caption>
+                                                <p>{comment.comment}</p>
+                                                <strong>{comment.name}</strong>
+                                            </Carousel.Caption>
+                                        </Carousel.Item>
+                                        )
+                                    })
+                                }
+                            </Carousel>
                         </div>
-                        <button><FaChevronRight size={30} color={'white'}></FaChevronRight></button>
                     </div>
                     <ul>
                         <li><Link style={{color:"white"}} to="/">Home</Link></li>

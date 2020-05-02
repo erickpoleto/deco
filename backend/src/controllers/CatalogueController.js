@@ -16,6 +16,21 @@ module.exports = {
             return res.send({error: e})
         }
     },
+    async createImages(req, res) {
+        const {id} = req.body
+        const {originalname: imgName, size, key, location: url = ""} = req.file;
+        try{    
+            const image = await Image.create({imgName, size, key, url});
+            const more = await Catalogue.findById(id, (err, img) => {
+                img.idImage.push(image._id),
+                img.save()
+                return res.json(img)
+            });
+
+        }catch(e){
+            return res.send({error: e})
+        }
+    },
     async index(req, res){
         const {page} = req.query
         try{

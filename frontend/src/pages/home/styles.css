@@ -51,17 +51,33 @@
     padding: 5% 15px;
     color: white;
 }
-.home-container .comments-div p{
-    font-size: 25px;
+.home-container .comments-div div {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+}
+.home-container .comments-div h3{
+    font-size: 20px;
     font-family: roboto;
 }
-.home-container .comments-div button{
-    border: none;
-    background: none;
+.home-container .comments-div p{
+    font-size: 15px;
+    font-family: roboto;
 }
-.home-container .comments-div button:hover{
-    cursor: pointer;
+
+.carousel-caption {
+    right: 0;
+    left: 0;
+    top: 2px;
 }
+.carousel-indicators {
+    bottom: -40px;
+}
+.carousel-control-next, .carousel-control-prev {
+    display: none;
+}
+
 .home-container header ul{
     display: flex;
     background: #0e6ae2;

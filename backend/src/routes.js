@@ -18,6 +18,7 @@ routes.delete('/delete', userController.delete);
 routes.post('/session', sessionController.create);
 //catalogue
 routes.post('/createProduct', multer(multerConfig).single('file'), authMiddleware, catalogueController.create)
+routes.post('/createImages', multer(multerConfig).single('file'), catalogueController.createImages)
 routes.get('/products', catalogueController.index)
 routes.get('/category', catalogueController.indexDistinct)
 routes.get('/product/:id', catalogueController.indexProduct)

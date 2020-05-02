@@ -1,0 +1,73 @@
+.product-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: roboto;
+}
+
+.productinfo-section{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 30px;
+}
+
+.productinfo-section .consult-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.productinfo-section .consult-info h2{
+    font-size: 2rem;
+}
+.productinfo-section .consult-info span{
+    
+    margin-top: 20px;
+}
+.productinfo-section .consult-info span strong{
+    font-weight: 500;
+    margin-right: 10px;
+}
+.productinfo-section .consult-info button{
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 1.4rem;
+    color: white;
+    background-color: #0e6ae2;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.productinfo-section .consult-info button:hover{
+    background-color: rgba(14, 106, 226, 0.8);
+}
+
+.productinfo-section .consult-info nav {
+    margin-top: 30px;
+}
+.productinfo-section .consult-info nav ul{
+    display: flex;
+}
+
+.productinfo-section .consult-info nav ul li{
+    margin-left: 20px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.productinfo-section .consult-info .desc-div{
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: roboto;
+}
+
+.image-gallery{
+    width: 100%;
+}
+.image-gallery-play-button{
+    display: none;
+}
