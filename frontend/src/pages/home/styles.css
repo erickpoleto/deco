@@ -1,10 +1,9 @@
 .home-container{
-    max-width: 1200px;
     margin: 0 auto;
 }
 
 .home-container header{
-    background: url('../../imgs/mainheader.jpg') no-repeat;
+    background: url('../../imgs/6357.jpg') no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -13,6 +12,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 40px;
     height: 400px;
 }
@@ -30,14 +31,15 @@
     color: #36057D;
 }
 .home-container .header-div div:nth-child(1) h2{
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 500;
     position: relative;
 }
 .home-container .header-div div:nth-child(2) p {
     font-size: 2.2rem;
     font-family: roboto;
     color: white;
-    text-shadow: 1px 2px black;
+    text-shadow: 1px 3px black;
 }
 .home-container .header-div div:nth-child(2) {
     width: 35%;
@@ -46,9 +48,9 @@
 
 .home-container .comments-div {
     display: flex;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
     justify-content: space-between;
-    padding: 5% 15px;
+    padding: 30px 15px;
     color: white;
 }
 .home-container .comments-div div {
@@ -62,7 +64,7 @@
     font-family: roboto;
 }
 .home-container .comments-div p{
-    font-size: 15px;
+    font-size: 20px;
     font-family: roboto;
 }
 
@@ -95,6 +97,11 @@
 .home-container header ul li:hover{
     background-color: rgba(255,255,255,0.5);
 
+}
+
+.home-container main {
+    margin: 0 auto;
+    max-width: 1500px;
 }
 
 .home-container main .main-div{
@@ -162,6 +169,8 @@
     justify-content: space-around;
     margin-top: 30px;
     padding: 20px;
+    width: 50%;
+    margin: 0 auto;
 }
 .home-container main .actions button{
     border: none;
@@ -172,7 +181,7 @@
     cursor: pointer;
 }
 .home-container main .actions p{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
