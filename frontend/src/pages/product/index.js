@@ -37,12 +37,22 @@ export default class Product extends Component {
     openFormContact = (e) => {
         const dialogList = document.querySelector('.consult-dialog-list');
         dialogList.classList.add('consult-dialog-list--close')
+
         if(e.target.id == 'back'){
-            document.querySelector('.consult-dialog-body form').classList.remove('call-form--open');
+            document.querySelector('.call-form').classList.remove('call-form--open')
+            document.querySelector('.email-form').classList.remove('email-form--open')
+            document.querySelector('.whats-form').classList.remove('whats-form--open')
             dialogList.classList.remove('consult-dialog-list--close')
         }
+
         if(e.target.id == 'call'){
             document.querySelector('.call-form').classList.add('call-form--open')
+        }
+        if(e.target.id == 'whats'){
+            document.querySelector('.whats-form').classList.add('whats-form--open')
+        }
+        if(e.target.id == 'email'){
+            document.querySelector('.email-form').classList.add('email-form--open')
         }
     }
 
@@ -73,25 +83,46 @@ export default class Product extends Component {
                         <button className="btn-sol-consult" onClick={this.openDialog} value="Solicitar">Solicitar Consultoria</button>
                         <div className='consult-dialog' role='dialog' aria-labelledby="dialog-tittle">
                             <div className='consult-dialog-body'>
+
                                 <button className="btn-exit-back" id='back' onClick={this.openFormContact}>--</button>
                                 <button className="btn-exit-dialog" onClick={this.openDialog}>X</button>
+
                                 <div className='consult-dialog-list'>
                                     <h3 id="dialog-tittle">qual forma de contato você prefere?</h3>
                                     <ul>
                                         <li id='call' onClick={this.openFormContact}>Ligação</li>
-                                        <li>Whatsapp</li>
-                                        <li>Email</li>
+                                        <li id='whats' onClick={this.openFormContact}>Whatsapp</li>
+                                        <li id='email' onClick={this.openFormContact}>Email</li>
                                     </ul>
                                 </div>
                                 <form className="call-form">
                                     <h3>Ligação</h3>
-                                    <label>Nome</label>
+                                    <label>Seu Nome</label>
                                     <input type='text' placeholder='seu nome'></input>
                                     <label>Número</label>
                                     <span>
                                         <input type='text' placeholder="ddd"></input>
                                         <input type='text' placeholder='seu numero'></input>
                                     </span>
+                                    <button>Enviar!</button>
+                                </form>
+                                <form className="whats-form">
+                                    <h3>Whatsapp</h3>
+                                    <label>Seu Nome</label>
+                                    <input type='text' placeholder='seu nome'></input>
+                                    <label>Seu Número</label>
+                                    <span>
+                                        <input type='text' placeholder="ddd"></input>
+                                        <input type='text' placeholder='seu numero'></input>
+                                    </span>
+                                    <button>Enviar!</button>
+                                </form>
+                                <form className="email-form">
+                                    <h3>Email</h3>
+                                    <label>Seu Nome</label>
+                                    <input type='text' placeholder='seu nome'></input>
+                                    <label>Seu Email</label>
+                                    <input type='text' placeholder='seu Email'></input>
                                     <button>Enviar!</button>
                                 </form>
                             </div>

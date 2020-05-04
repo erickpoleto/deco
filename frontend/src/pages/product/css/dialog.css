@@ -101,6 +101,22 @@
     flex-direction: column;
     align-items: center;
 }
+.whats-form{
+    display: none;
+}
+.whats-form--open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.email-form{
+    display: none;
+}
+.email-form--open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .consult-dialog form label{
     font-size: 20px;
@@ -109,6 +125,16 @@
 .consult-dialog .call-form h3::after {
     font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f095";
     margin-left: 10px;
+}
+.consult-dialog .whats-form h3::after {
+    font-family: "Font Awesome 5 brands"; font-weight: 900; content: "\f232";
+    margin-left: 10px;
+    color: #25D366;
+}
+.consult-dialog .email-form h3::after {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f0e0";
+    margin-left: 10px;
+    color: #34B7F1;
 }
 
 .consult-dialog form input{
@@ -119,7 +145,7 @@
     font-size: 18px;
 }
 .consult-dialog form input:focus{
-    border-color: #25D366;
+    border-color: #128C7E;
 }
 .consult-dialog form span{
     display: flex;
@@ -136,6 +162,17 @@
     margin-top: 30px;
     padding: 15px;
     font-size: 20px;
-    background-color: #25D366;
     border: 1px solid black;
+}
+.consult-dialog .call-form button{
+    background-color: black;
+    color: white;
+}
+.consult-dialog .whats-form button{
+    background-color: #25D366;
+    color: white;
+}
+.consult-dialog .email-form button{
+    background-color: #34B7F1;
+    color: white;
 }
