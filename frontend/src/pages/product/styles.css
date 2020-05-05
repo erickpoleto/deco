@@ -1,0 +1,155 @@
+.product-container{
+    max-width: 1500px;
+    margin: 0 auto;
+    font-family: roboto;
+}
+
+.productinfo-section{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 1px 1px 5px black;
+}
+
+.productinfo-section .image-div{
+    width: 60%;
+}
+
+.productinfo-section .consult-info{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.productinfo-section .consult-info h2{
+    font-size: 1.5rem;
+
+}
+.productinfo-section .consult-info span{
+    margin-top: 20px;
+
+}
+.productinfo-section .consult-info span strong{
+    font-weight: 500;
+    margin-right: 10px;
+}
+.productinfo-section .consult-info .btn-sol-consult{
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 1.4rem;
+    color: white;
+    background-color: #0e6ae2;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.productinfo-section .consult-info .btn-sol-consult:hover{
+    background-color: rgba(14, 106, 226, 0.8);
+}
+
+.productinfo-section .consult-info nav {
+    margin-top: 30px;
+}
+.productinfo-section .consult-info nav ul{
+    display: flex;
+}
+
+.productinfo-section .consult-info nav ul li{
+    cursor: pointer;
+}
+
+.productinfo-section .consult-info nav ul li:nth-child(2){
+    margin-left: 20px;
+}
+
+.active-desc{
+    border-bottom: 1px solid black;
+}
+
+.productinfo-section .consult-info .desc-div{
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: roboto;
+} 
+
+.p-tec, .p-desc{
+    display: none;
+}
+
+.active-desc-p {
+    display: block;
+}
+
+
+.comments-section{
+    margin: 50px auto 0 auto;
+    padding: 20px;
+}
+
+.comments-section .leavecomment-div{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+}
+
+.comments-section .leavecomment-div h4{
+    margin-top: 10px;
+}
+
+.comments-section .leavecomment-div form {
+    display: flex;
+}
+.comments-section .leavecomment-div form textarea{
+    width: 90%;
+    max-width: 100%;
+    max-height: 100px;
+    border-radius: 5px;
+}
+.comments-section .leavecomment-div form textarea:focus{
+    border-color: coral;
+}
+.comments-section .leavecomment-div form button{
+    width: 10%;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+    color: black;
+    background-color: coral;
+    border: none;
+    transition: 0.3s all;
+}
+.comments-section .leavecomment-div form button:hover{
+    opacity: 0.3;
+}
+
+.comments-div{
+    margin-top: 30px;
+}
+
+.commentsleaved-div div{
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 5px black;
+}
+
+.image-gallery{
+}
+.image-gallery-image{
+    width: 500px;
+    height: 500px;
+}
+
+.image-gallery-play-button{
+    display: none;
+}

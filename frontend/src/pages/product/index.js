@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {FaChevronLeft} from 'react-icons/fa'
 import ImageGallery from 'react-image-gallery';
 
+import Facebook from '../../components/Facebook/index.js'
+
 import api from '../../services/api'
-import './css/styles.css'
+
+import './styles.css'
 import './css/dialog.css'
 
 export default class Product extends Component {
@@ -24,6 +27,10 @@ export default class Product extends Component {
             image: response.data.idImage.map(item=>{return {original: item.url, thumbnail: item.url}})})
     }
 
+    createComment = () => {
+
+    }
+
     openDialog = (e) => {
         const dialog = document.querySelector('.consult-dialog')
         
@@ -42,17 +49,36 @@ export default class Product extends Component {
             document.querySelector('.call-form').classList.remove('call-form--open')
             document.querySelector('.email-form').classList.remove('email-form--open')
             document.querySelector('.whats-form').classList.remove('whats-form--open')
+            document.querySelector('.btn-exit-back').classList.remove('btn-exit-back--open')
             dialogList.classList.remove('consult-dialog-list--close')
         }
-
+        
         if(e.target.id == 'call'){
             document.querySelector('.call-form').classList.add('call-form--open')
+            document.querySelector('.btn-exit-back').classList.add('btn-exit-back--open')
         }
         if(e.target.id == 'whats'){
             document.querySelector('.whats-form').classList.add('whats-form--open')
+            document.querySelector('.btn-exit-back').classList.add('btn-exit-back--open')
         }
         if(e.target.id == 'email'){
             document.querySelector('.email-form').classList.add('email-form--open')
+            document.querySelector('.btn-exit-back').classList.add('btn-exit-back--open')
+        }
+    }
+
+    changeDesc = (e) => {
+        if(e.target.id == 'tec' && !e.target.classList.contains('active-desc')){
+            document.querySelector('#desc').classList.remove('active-desc');
+            document.querySelector('.p-desc').classList.remove('active-desc-p');
+            document.querySelector('.p-tec').classList.add('active-desc-p');
+            e.target.classList.add('active-desc');
+        }
+        if(e.target.id == 'desc' && !e.target.classList.contains('active-desc')){
+            document.querySelector('#tec').classList.remove('active-desc');
+            document.querySelector('.p-tec').classList.remove('active-desc-p');
+            document.querySelector('.p-desc').classList.add('active-desc-p');
+            e.target.classList.add('active-desc');
         }
     }
 
@@ -62,7 +88,7 @@ export default class Product extends Component {
         return(
             <div className='product-container'>
                 <section onKeyUp={e=>{
-                    if(e.keyCode==27 && 
+                    if((e.keyCode==27) && 
                         document.querySelector('.consult-dialog').classList.contains('consult-dialog--open')){
                     document.querySelector('.consult-dialog').classList.remove('consult-dialog--open');
                 }}} className="productinfo-section">
@@ -84,7 +110,7 @@ export default class Product extends Component {
                         <div className='consult-dialog' role='dialog' aria-labelledby="dialog-tittle">
                             <div className='consult-dialog-body'>
 
-                                <button className="btn-exit-back" id='back' onClick={this.openFormContact}>--</button>
+                                <button className="btn-exit-back" id='back' onClick={this.openFormContact}></button>
                                 <button className="btn-exit-dialog" onClick={this.openDialog}>X</button>
 
                                 <div className='consult-dialog-list'>
@@ -98,31 +124,31 @@ export default class Product extends Component {
                                 <form className="call-form">
                                     <h3>Ligação</h3>
                                     <label>Seu Nome</label>
-                                    <input type='text' placeholder='seu nome'></input>
+                                    <input type='text' placeholder='seu nome' required></input>
                                     <label>Número</label>
                                     <span>
-                                        <input type='text' placeholder="ddd"></input>
-                                        <input type='text' placeholder='seu numero'></input>
+                                        <input type='text' placeholder="ddd" required></input>
+                                        <input type='text' placeholder='seu numero' required></input>
                                     </span>
                                     <button>Enviar!</button>
                                 </form>
                                 <form className="whats-form">
                                     <h3>Whatsapp</h3>
                                     <label>Seu Nome</label>
-                                    <input type='text' placeholder='seu nome'></input>
+                                    <input type='text' placeholder='seu nome' required></input>
                                     <label>Seu Número</label>
                                     <span>
-                                        <input type='text' placeholder="ddd"></input>
-                                        <input type='text' placeholder='seu numero'></input>
+                                        <input type='text' placeholder="ddd" required></input>
+                                        <input type='text' placeholder='seu numero' required></input>
                                     </span>
                                     <button>Enviar!</button>
                                 </form>
                                 <form className="email-form">
                                     <h3>Email</h3>
                                     <label>Seu Nome</label>
-                                    <input type='text' placeholder='seu nome'></input>
+                                    <input type='text' placeholder='seu nome' required></input>
                                     <label>Seu Email</label>
-                                    <input type='text' placeholder='seu Email'></input>
+                                    <input type='text' placeholder='seu Email' required></input>
                                     <button>Enviar!</button>
                                 </form>
                             </div>
@@ -130,18 +156,38 @@ export default class Product extends Component {
                         </div>
                         <nav>
                             <ul>
-                                <li>descrição</li>
-                                <li>tecnico</li>
+                                <li id='desc' className='active-desc' onClick={this.changeDesc}>descrição</li>
+                                <li id='tec' onClick={this.changeDesc}>técnico</li>
                             </ul>
                         </nav>
                         <div className="desc-div">
-                            <p>{product.desc} lorem lore lorem lorem lorem lreom</p>
-                            <p style={{display:"none"}}>{product.tec}</p>
+                            <p className='p-desc active-desc-p'>{product.desc} lorem lore lorem lorem lorem lreom</p>
+                            <p className='p-tec'>{product.tec}</p>
                         </div>
                     </div>
                 </section>
                 <section className="comments-section">
-
+                    <div className="leavecomment-div">
+                        <Facebook></Facebook>
+                        <h4>Deixe um comentário</h4>
+                        <form>
+                            <textarea className='leavecomment-textarea'></textarea>
+                            <button type='submit'>Enviar</button>
+                        </form>
+                    </div>
+                    <div className="comments-div">
+                        <h2>avalições</h2>
+                        <div className='commentsleaved-div'>
+                            <div>
+                                <h5>erick</h5>
+                                <p>comentario comentario comentario</p>
+                            </div>
+                            <div>
+                                <h5>erick</h5>
+                                <p>comentario comentario comentario</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         )

@@ -27,18 +27,33 @@
     margin-top: 10px;
     text-align: center;
 }
+
 .product-container .consult-info .consult-dialog-body .btn-exit-dialog{
     color:black;
-    padding: 0;
-    background: 0;
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
+}
+
+.btn-exit-back{
+    display: none;
+    background-color: white;
     border: none;
     position: absolute;
-    right: 10px;
-    font-size: 15px;
-    border: 2px solid black;
-    border-radius: 0;
-    padding: 0 3px;
+    margin-left: 15px;
+    font-size: 20px;
 }
+
+.btn-exit-back--open{
+    display: block;
+}
+
+.btn-exit-back::after{
+    font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f053";
+}
+
 .product-container .consult-info .consult-dialog-body .btn-exit-dialog:hover{
     color:red;
     border-color: red;
