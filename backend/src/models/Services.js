@@ -14,7 +14,7 @@ const ServicesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    idImage:{
+    imageId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Image',
         require: true

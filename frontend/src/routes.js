@@ -8,6 +8,7 @@ import Product from './pages/product';
 
 import Header from './components/Header/index'
 import Footer from './components/Footer/index'
+import Contatos from './components/Contatos'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -30,6 +31,8 @@ export default function Router() {
                 <Route path="/" exact component={Home}/>
                 <Route path="/product/:id" exact component={Product}/>
             </Switch>
+            
+            <Contatos></Contatos>
             <Footer></Footer>
         </BrowserRouter>
     );

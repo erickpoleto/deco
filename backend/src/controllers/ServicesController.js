@@ -9,7 +9,7 @@ module.exports = {
         const {originalname: imgName, size, key, location: url = ""} = req.file;
         try{    
             const image = await Image.create({imgName, size, key, url});
-            const post = await Services.create({name:name, category:category, desc:desc, idImage: image._id});
+            const post = await Services.create({name:name, category:category, desc:desc, imageId: image._id});
             return res.json({post})
 
         }catch(e){

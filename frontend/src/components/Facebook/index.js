@@ -45,11 +45,14 @@ export default class Facebook extends Component {
                 </div>
             )
         }else{
-            fbContent = (<FacebookLogin
+            fbContent = (
+            <div>
+                <FacebookLogin
                 appId="351539589159014"
                 fields="name,email,picture"
                 onClick={this.componentClicked}
-                callback={this.responseFacebook} />)
+                callback={this.responseFacebook} />
+            </div>)
         }
         
         return(

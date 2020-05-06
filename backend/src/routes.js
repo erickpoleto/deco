@@ -2,7 +2,9 @@ const express = require('express');
 
 const userController = require('./controllers/UserController');
 const sessionController = require('./controllers/SessionController');
-const catalogueController = require('./controllers/CatalogueController');
+const productController = require('./controllers/productController');
+const categoryController = require('./controllers/CategoryController');
+const commentsController = require('./controllers/CommentsController');
 
 
 const routes = express.Router()
@@ -16,14 +18,20 @@ routes.get('/index', userController.index);
 routes.delete('/delete', userController.delete);
 //session
 routes.post('/session', sessionController.create);
-//catalogue
-routes.post('/createProduct', multer(multerConfig).single('file'), authMiddleware, catalogueController.create)
-routes.post('/createImages', multer(multerConfig).single('file'), catalogueController.createImages)
-routes.get('/products', catalogueController.index)
-routes.get('/category', catalogueController.indexDistinct)
-routes.get('/product/:id', catalogueController.indexProduct)
-routes.delete('/deletecat/:id', authMiddleware, catalogueController.delete)
 
-//services
+//product
+routes.post('/newproduct',    multer(multerConfig).single('file'), authMiddleware, productController.create)
+routes.get('/products', productController.index)
+routes.get('/product/:id', productController.indexProduct)
+routes.delete('/deleteproduct', authMiddleware, productController.delete)
+
+//category
+routes.post('/newcategory', authMiddleware, categoryController.create)
+routes.get('/indexcategory', categoryController.index)
+
+//comments
+
+routes.post('/newcomment', commentsController.create)
+routes.get('/indexcomment', commentsController.index)
 
 module.exports = (routes);

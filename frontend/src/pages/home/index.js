@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import {Link} from 'react-router-dom';
 
+
 import api from "../../services/api";
 import image from '../../imgs/pp.png'
 
@@ -24,7 +25,7 @@ export default class Home extends Component {
 
     loadProducts = async (page = 1) => {
         const response = await api.get(`/products?page=${page}`);
-        const category = await api.get(`/category`);
+        const category = await api.get('/indexcategory');
         const {docs, ...productInfo} = response.data;
         this.setState({products: docs, category:category.data, productInfo, page:page})
     }
@@ -56,7 +57,7 @@ export default class Home extends Component {
             },
             {
                 comment: "showshowshow",
-                name: "joao"
+                name: "rodrigo"
             }
         ]
         return( 
@@ -105,7 +106,7 @@ export default class Home extends Component {
                             <strong>Categorias</strong>
                             {category.map(item=>{
                                 return(
-                                    <li><Link to="">{item}</Link></li>
+                                    <li><Link to="">{item.name}</Link></li>
                                 )
                             })}
                         </ul>
@@ -115,7 +116,8 @@ export default class Home extends Component {
                                 return(
                                     <li key={item._id}>
                                         <strong>{item.name}</strong>
-                                        <img src={item.idImage[0].url}></img>
+                                        
+                                        <img src={item.imageId[0].url}></img>
                                         <Link to={`/product/${item._id}`}>
                                             <button>Consultar</button>
                                         </Link>

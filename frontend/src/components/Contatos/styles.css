@@ -1,0 +1,95 @@
+.contatos-container{
+    width: 1500px;
+    margin: 0 auto;
+    
+}
+
+.contatos-container div{
+    position: fixed;
+    bottom: 170px;
+    left: auto;
+    right: 110px;
+    
+    z-index: 10;
+}
+
+.contatos-container div button{
+    border: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 50% 50% 0 50%;
+    box-shadow: 1px 1px 5px black;
+    padding: 10px;
+    background-color: #0e6ae2;
+}
+
+.contatos-container .contatos-div .contatos{
+    transform: translateX(-100%);
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.contatos-container .contatos-div .contatos--open{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 100px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #0e6ae2;
+    border-radius: 5px;
+    transform: translateX(0);
+    opacity: 1;
+    box-shadow: 1px 1px 5px black;
+    height: 400px;
+    width: 300px;
+    transition: 0.5s all;
+}
+
+
+.contatos-container .contatos-div .contatos--open span{
+    display: flex;
+
+}
+.contatos-container .contatos-div .contatos--open span p{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.contatos-container .contatos-div .contatos--open form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.contatos-container .contatos-div .contatos--open input{
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    width: 100%;
+}
+.contatos-container .contatos-div .contatos--open input:focus{
+    border-color:#0e6ae2;
+}
+
+.contatos-container .contatos-div .contatos--open textarea{
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+
+    max-height: 100px;
+}
+.contatos-container .contatos-div .contatos--open textarea:focus{
+    border-color:#0e6ae2;
+}

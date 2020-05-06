@@ -13,6 +13,7 @@ export default class Product extends Component {
     state={
         product: {},
         image: [],
+        comments: []
     }
 
     componentDidMount(){
@@ -22,9 +23,10 @@ export default class Product extends Component {
     loadProduct = async() => {
         const { id } = this.props.match.params;
         const response = await api.get(`/product/${id}`)
-
         this.setState({product:response.data, 
-            image: response.data.idImage.map(item=>{return {original: item.url, thumbnail: item.url}})})
+            image: response.data.imageId.map(item=>{return {original: item.url, thumbnail: item.url}}),
+            comments: response.data.commentsId.map(item=>{return {name:item.username, comment:item.comment}})})
+        console.info(this.state.comments)
     }
 
     createComment = () => {
@@ -83,7 +85,7 @@ export default class Product extends Component {
     }
 
     render(){
-        const {product, image} = this.state
+        const {product, image, comments} = this.state
         console.info(image)
         return(
             <div className='product-container'>
@@ -176,16 +178,17 @@ export default class Product extends Component {
                         </form>
                     </div>
                     <div className="comments-div">
-                        <h2>avalições</h2>
+                        <h2>Comentários</h2>
                         <div className='commentsleaved-div'>
-                            <div>
-                                <h5>erick</h5>
-                                <p>comentario comentario comentario</p>
-                            </div>
-                            <div>
-                                <h5>erick</h5>
-                                <p>comentario comentario comentario</p>
-                            </div>
+                            {comments.map(comment => {
+                                return(
+                                    <div>
+                                        <h5>{comment.name}</h5>
+                                        <p>{comment.comment}</p>
+                                    </div>
+                                )
+                            })
+                            }
                         </div>
                     </div>
                 </section>

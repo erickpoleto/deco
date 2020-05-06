@@ -6,6 +6,7 @@ const path = require('path');
 const { promisify } = require('util');
 
 const ImageSchema = new mongoose.Schema({
+    
     name:{
         type:String,
     },

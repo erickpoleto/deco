@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate');
 
-const CatSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
     name: {
         type : String,
         required: true
     },
     category: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
         required: true,
     },
     desc: {
@@ -18,11 +19,17 @@ const CatSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    idImage:[
+    imageId:[
         {   
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Image',
             require: true
+        }
+    ],
+    commentsId: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comments'
         }
     ],
     createAt: {
@@ -31,5 +38,5 @@ const CatSchema = new mongoose.Schema({
     }
 })
 
-CatSchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('Catalogue', CatSchema);
+ProductSchema.plugin(mongoosePaginate)
+module.exports = mongoose.model('Product', ProductSchema);

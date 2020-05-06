@@ -1,30 +1,34 @@
 const mongoose = require('mongoose')
 
-const Catalogue = require('../models/Catalogue')
+const Product = require('../models/Product')
 const Image = require('../models/Image')
 
 module.exports = {
+
     async create(req, res) {
+
         const {name, category, desc, tec} = req.body
         const {originalname: imgName, size, key, location: url = ""} = req.file;
+
         try{    
             const image = await Image.create({imgName, size, key, url});
-            const post = await Catalogue.create({name:name, category:category, desc:desc, tec:tec, idImage: image._id});
-            return res.json({post})
+            const product = await Product.create({name:name, category:category, desc:desc, tec:tec, imageId: image._id});
+            return res.json({product})
 
         }catch(e){
             return res.send({error: e})
         }
     },
+
     async createImages(req, res) {
         const {id} = req.body
         const {originalname: imgName, size, key, location: url = ""} = req.file;
         try{    
             const image = await Image.create({imgName, size, key, url});
-            const more = await Catalogue.findById(id, (err, img) => {
-                img.idImage.push(image._id),
-                img.save()
-                return res.json(img)
+            const product = await Product.findById(id, (err, product) => {
+                product.idImage.push(image._id),
+                product.save()
+                return res.json(product)
             });
 
         }catch(e){
@@ -34,37 +38,30 @@ module.exports = {
     async index(req, res){
         const {page} = req.query
         try{
-            const catalogue = await Catalogue.paginate({}, {populate:'idImage', page:page, limit: 12});
-            return res.json(catalogue)
+            const product = await Product.paginate({}, {populate:['imageId', 'commentsId'], page:page, limit: 12});
+            return res.json(product)
         }catch(e){
             return res.json({error: e})
         }
            
     },
-    async indexDistinct(req, res){
-        try{
-            const catalogue = await Catalogue.find({}).distinct('category');
-            return res.json(catalogue)
-        }catch(e){
-            return res.json({error: e})
-        }
-           
-    },
+
     async indexProduct(req, res){
         const {id} = req.params
         try{
-            const catalogue = await Catalogue.findById(id).populate(['idImage']);
-            return res.json(catalogue)    
+            const product = await Product.findById(id).populate(['imageId', "commentsId"]);
+            return res.json(product)    
         }catch(e){
             return res.json({error: e})
         }
         
     },
+
     async delete(req, res){
-        const catalogue = await Catalogue.findById(req.params.id);
-        const image = await Image.findById(catalogue.idImage);
+        const product = await Product.find({});
+        const image = await Image.findById(product.imageId);
         await image.remove();
-        catalogue.remove();
+        await product.remove();
         return res.send()
     }
 }
