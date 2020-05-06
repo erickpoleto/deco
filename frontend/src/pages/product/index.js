@@ -6,20 +6,29 @@ import Facebook from '../../components/Facebook/index.js'
 
 import api from '../../services/api'
 
+import {history, useHistory} from 'react-router-dom'
+
 import './styles.css'
 import './css/dialog.css'
 
 export default class Product extends Component {
+
+    constructor(props){
+        super(props);
+    }
+
     state={
         product: {},
         image: [],
-        comments: []
+        comments: [],
+        comment: "",
+        infoUser: {}
     }
 
     componentDidMount(){
         this.loadProduct();
     }
-    
+
     loadProduct = async() => {
         const { id } = this.props.match.params;
         const response = await api.get(`/product/${id}`)
@@ -27,10 +36,6 @@ export default class Product extends Component {
             image: response.data.imageId.map(item=>{return {original: item.url, thumbnail: item.url}}),
             comments: response.data.commentsId.map(item=>{return {name:item.username, comment:item.comment}})})
         console.info(this.state.comments)
-    }
-
-    createComment = () => {
-
     }
 
     openDialog = (e) => {
@@ -84,9 +89,38 @@ export default class Product extends Component {
         }
     }
 
+    updateUserState = (item) => {
+        this.setState({infoUser:item})
+    }
+
+    submitCommentHandler = async(e) => {
+        e.preventDefault();
+        if(this.state.infoUser.email === undefined){
+            alert("você precisa estar logado com facebook para comentar");
+            return;
+        }
+        if(this.state.comment.length < 10){
+            document.querySelector('.comment-empity-alert')
+            .classList.add('comment-empity-alert--active')
+            return;
+        }
+        const data = {
+            username: this.state.infoUser.name,
+            email: this.state.infoUser.email,
+            comment: this.state.comment,
+            productId: this.state.product._id
+        }
+        try{
+            const response = await api.post('/newcomment', data);
+            e.submit()
+        }catch(e){
+            alert('algo deu errado');
+            return console.info(e)
+        }
+    }
+
     render(){
-        const {product, image, comments} = this.state
-        console.info(image)
+        const {product, image, comments} = this.state;
         return(
             <div className='product-container'>
                 <section onKeyUp={e=>{
@@ -170,10 +204,11 @@ export default class Product extends Component {
                 </section>
                 <section className="comments-section">
                     <div className="leavecomment-div">
-                        <Facebook></Facebook>
+                        <Facebook updateUserState={this.updateUserState}></Facebook>
                         <h4>Deixe um comentário</h4>
-                        <form>
-                            <textarea className='leavecomment-textarea'></textarea>
+                        <span className="comment-empity-alert"><p>Para Enviar, a caixa precisa estar preenchida com pelo menos 10 caracteres</p></span>
+                        <form onSubmit={this.submitCommentHandler} className="leavecomment-form">
+                            <textarea onChange={e => this.setState({comment:e.target.value})} className='leavecomment-textarea'></textarea>
                             <button type='submit'>Enviar</button>
                         </form>
                     </div>

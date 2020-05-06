@@ -14,7 +14,7 @@ export default class Facebook extends Component {
     }
 
     componentDidMount(){
-        
+
     }
 
     componentClicked = () =>{
@@ -34,6 +34,16 @@ export default class Facebook extends Component {
             })
         }
     }
+
+    
+    handleChange = () => {
+        this.props.updateUserState({
+            email: this.state.email, 
+            name: this.state.name,
+            picture: this.state.picture
+        });
+    }
+    
     
     render(){
         let fbContent;
@@ -49,14 +59,15 @@ export default class Facebook extends Component {
             <div>
                 <FacebookLogin
                 appId="351539589159014"
+                autoLoad="true"
                 fields="name,email,picture"
                 onClick={this.componentClicked}
                 callback={this.responseFacebook} />
             </div>)
         }
-        
+
         return(
-            <div className='facebook-container'>
+            <div onLoad={this.handleChange} className='facebook-container'>
                 {fbContent}
             </div>
         )

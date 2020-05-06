@@ -103,6 +103,20 @@
     margin-top: 10px;
 }
 
+.comment-empity-alert{
+    display: none;
+
+}
+.comment-empity-alert--active{
+    display: block;
+
+}
+.comment-empity-alert p{
+    background-color: red;
+    color:white
+
+}
+
 .comments-section .leavecomment-div form {
     display: flex;
 }
