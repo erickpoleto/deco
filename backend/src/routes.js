@@ -32,6 +32,7 @@ routes.get('/indexcategory', categoryController.index)
 //comments
 
 routes.post('/newcomment', commentsController.create)
-routes.get('/indexcomment', commentsController.index)
+routes.get('/indexcomment/:id', commentsController.index)
+routes.delete('/deletecomment/:id', commentsController.delete)
 
 module.exports = (routes);

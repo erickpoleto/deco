@@ -163,7 +163,7 @@
     background-color: rgba(14, 106, 226, 0.8);
     cursor: pointer;
 }
-.home-container main .actions {
+.actions {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -172,15 +172,15 @@
     width: 50%;
     margin: 0 auto;
 }
-.home-container main .actions button{
+.actions button{
     border: none;
     background: none;
 }
-.home-container main .actions button:hover{
+.actions button:hover{
     background-color: rgba(255,255,255,0.5);
     cursor: pointer;
 }
-.home-container main .actions p{
+.actions p{
     font-size: 18px;
     font-weight: bold;
 }

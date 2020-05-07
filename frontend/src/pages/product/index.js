@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {FaChevronLeft} from 'react-icons/fa'
+
+import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import ImageGallery from 'react-image-gallery';
 
 import Facebook from '../../components/Facebook/index.js'
@@ -21,12 +22,15 @@ export default class Product extends Component {
         product: {},
         image: [],
         comments: [],
+        infoComments: {},
         comment: "",
-        infoUser: {}
+        infoUser: {},
+        page: 1
     }
 
     componentDidMount(){
         this.loadProduct();
+        this.loadComments();
     }
 
     loadProduct = async() => {
@@ -34,8 +38,32 @@ export default class Product extends Component {
         const response = await api.get(`/product/${id}`)
         this.setState({product:response.data, 
             image: response.data.imageId.map(item=>{return {original: item.url, thumbnail: item.url}}),
-            comments: response.data.commentsId.map(item=>{return {name:item.username, comment:item.comment}})})
+        })
         console.info(this.state.comments)
+    }
+
+    loadComments = async(pageNumber=1) => {
+        const { id } = this.props.match.params;
+        const comments = await api.get(`/indexcomment/${id}?page=${pageNumber}`);
+        const {docs, ...infoComments} = comments.data
+        this.setState({comments: docs, infoComments, page:pageNumber});
+    }
+
+    prevPage = () => {
+        const { page, infoComments} = this.state;
+        if(infoComments.pages === 1 || infoComments.page === "1"){
+            return;
+        }
+        const pageNumber = page - 1
+        this.loadComments(pageNumber)
+    }
+    nextPage = () => {
+        const { page, infoComments} = this.state;
+        if (page === infoComments.pages) {
+            return;
+        }
+        const pageNumber = page + 1
+        this.loadComments(pageNumber);
     }
 
     openDialog = (e) => {
@@ -112,15 +140,26 @@ export default class Product extends Component {
         }
         try{
             const response = await api.post('/newcomment', data);
-            e.submit()
+            alert("comentario enviado")
+            window.location.reload()
         }catch(e){
             alert('algo deu errado');
             return console.info(e)
         }
     }
 
+    removeComment = async(e) => {
+        try{
+            const reponse = await api.delete(`/deletecomment/${e.target.id}`)
+            alert('comentario removido')
+            window.location.reload()
+        }catch(e){
+            console.info(e)
+        }
+    }
+
     render(){
-        const {product, image, comments} = this.state;
+        const {product, image, comments, infoComments} = this.state;
         return(
             <div className='product-container'>
                 <section onKeyUp={e=>{
@@ -216,14 +255,39 @@ export default class Product extends Component {
                         <h2>Comentários</h2>
                         <div className='commentsleaved-div'>
                             {comments.map(comment => {
-                                return(
-                                    <div>
-                                        <h5>{comment.name}</h5>
-                                        <p>{comment.comment}</p>
+                                if(this.state.infoUser.email === comment.email){
+                                    return(
+                                    <div className="usercomment-div">
+                                        <div>
+                                            <h5>{comment.username}</h5>
+                                            <p>{comment.comment}</p>
+                                        </div>
+                                        <div>
+                                            <button onClick={this.removeComment} id={comment._id}  className="button-comment"></button>
+                                        </div>
                                     </div>
-                                )
+                                    )
+                                }
+                                else{
+                                    return(
+                                        <div className="usercomment-div">
+                                            <div>
+                                                <h5>{comment.username}</h5>
+                                                <p>{comment.comment}</p>
+                                            </div>
+                                            <div>
+                                                <button className="button-comment button--inative"></button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
                             })
                             }
+                        </div>
+                        <div className="actions">
+                            <button disabled={this.state.page === 1} onClick={this.prevPage}><FaChevronLeft size={30}></FaChevronLeft></button>
+                            <p>Página {this.state.page} de {infoComments.pages}</p>    
+                            <button disabled={this.state.page === infoComments.pages} onClick={this.nextPage}><FaChevronRight size={30}></FaChevronRight></button>    
                         </div>
                     </div>
                 </section>
