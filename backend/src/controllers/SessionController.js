@@ -11,10 +11,10 @@ module.exports = {
         const { email, password } = req.body;
         const user = await User.findOne({email}).select('+password');
         if(!user){
-            return res.status(400).send({error: "user not found"})
+            return res.status(402).send({error: "user not found"})
         }
         if(!await bcrypt.compare(password, user.password)){
-            return res.status(400).send({error: "password invalid"})
+            return res.status(401).send({error: "password invalid"})
         }
         user.password = undefined
 

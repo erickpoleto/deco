@@ -136,6 +136,7 @@ export default class Product extends Component {
             username: this.state.infoUser.name,
             email: this.state.infoUser.email,
             comment: this.state.comment,
+            picture: this.state.infoUser.picture,
             productId: this.state.product._id
         }
         try{
@@ -143,8 +144,12 @@ export default class Product extends Component {
             alert("comentario enviado")
             window.location.reload()
         }catch(e){
-            alert('algo deu errado');
-            return console.info(e)
+            if(e.response.status === 405){
+                alert('você só pode comentar 10 vezes neste produto')
+            }
+            else{
+                console.info('algo deu errado')
+            }
         }
     }
 
@@ -259,7 +264,7 @@ export default class Product extends Component {
                                     return(
                                     <div className="usercomment-div">
                                         <div>
-                                            <h5>{comment.username}</h5>
+                                            <h5><img src={comment.picture}></img> {comment.username}</h5>
                                             <p>{comment.comment}</p>
                                         </div>
                                         <div>
@@ -272,7 +277,7 @@ export default class Product extends Component {
                                     return(
                                         <div className="usercomment-div">
                                             <div>
-                                                <h5>{comment.username}</h5>
+                                                <h5><img src={comment.picture}></img> {comment.username}</h5>
                                                 <p>{comment.comment}</p>
                                             </div>
                                             <div>

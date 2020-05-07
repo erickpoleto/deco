@@ -2,6 +2,8 @@ import React from 'react';
 import {FaFacebook, FaInstagram} from 'react-icons/fa'
 import './styles.css';
 
+import {Link} from 'react-router-dom'
+
 export default function Footer() {
     return (
         <div className='footer-container'>
@@ -14,7 +16,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <strong>Portal</strong>
-                        <a href="">Deco</a>
+                        <Link to='/logindeco'>Deco</Link>
                     </div>
                 </section>
                 <section className="foot-section">

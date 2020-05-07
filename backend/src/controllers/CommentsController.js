@@ -4,16 +4,15 @@ const Product = require('../models/Product')
 
 module.exports = {
     async create(req, res){
-        const {username, email, comment, productId} = req.body;
+        const {username, email, comment, picture, productId} = req.body;
         try{
             if((await Comments.find({email:email, productId:productId})).length > 10){
-                return res.status(400).send({error: "limite de 10 comentarios"})
+                return res.status(405).send({error: "limite de 10 comentarios"})
             }
-            const comments = await Comments.create({username, email, comment, productId});
+            const comments = await Comments.create({username, email, comment, picture, productId});
             const products = await Product.findById(productId);
             products.commentsId.push(comments._id)
             await products.save()
-            console.info("oq?")
             return res.status(200).send({done:"everything up to date"})
         }catch(e){
             return res.json(e)

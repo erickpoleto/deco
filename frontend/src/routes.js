@@ -10,6 +10,9 @@ import Header from './components/Header/index'
 import Footer from './components/Footer/index'
 import Contatos from './components/Contatos'
 
+import DecoHome from './pages/deco/home'
+import LoginDeco from './pages/deco/login'
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
       {...rest}
@@ -29,9 +32,10 @@ export default function Router() {
             <Header></Header>
             <Switch>
                 <Route path="/" exact component={Home}/>
-                <Route path="/product/:id" exact component={Product}/>
+                <Route path="/product/:id" component={Product}/>
+                <Route path="/logindeco" component={LoginDeco}/>
+                <PrivateRoute path="/decohome" component={DecoHome}/>
             </Switch>
-            
             <Contatos></Contatos>
             <Footer></Footer>
         </BrowserRouter>

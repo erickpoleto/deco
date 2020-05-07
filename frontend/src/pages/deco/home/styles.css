@@ -1,0 +1,108 @@
+.decohome-container{
+    margin: 0 auto;
+}
+
+.decohome-container header{
+    background: url('../../../imgs/6357.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.decohome-container header div{
+    text-align: center;
+    color: white;
+    text-shadow: 1px 2px black;
+
+}
+
+.decohome-container header div span{
+    margin-bottom: 10px;
+}
+
+.decohome-container header div span h1{
+    color: #B1013D;
+    font-size: 5rem;
+}
+.decohome-container header div span h1 b{
+    color: #36057D;
+}
+.decohome-container header div span h2{
+    font-size: 2.2rem;
+}
+
+.decohome-container header ul{
+    display: flex;
+    background: #0e6ae2;
+    margin: 20px auto;
+    justify-content: center;
+}
+.decohome-container header ul li{
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    
+    transition: 0.4s all;
+}
+
+.decohome-container main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.decohome-container main .products-div ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 40px;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.decohome-container main .products-div ul #li-btn-add{
+    border-radius: 50%;
+    background: none;
+    box-shadow: none;
+}
+.decohome-container main .products-div ul #btn-add{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+}
+.decohome-container main .products-div ul #btn-add::after{
+    font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f055";
+    font-size: 6rem;
+}
+.decohome-container main .products-div li{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px 0 0 0;
+    margin-top: 10px;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 5px;
+}
+
+#btn-remove {
+    padding: 10px;
+    background-color: #0e6ae2;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+#btn-remove::after {
+    
+    font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f1f8";
+    margin-left: 10px;
+    color: black;
+}
+#btn-remove:hover {
+    background-color: #B1013D;
+    
+}
+
+.decohome-container main .products-div ul li img {
+    width: 300px;
+    height: 300px;
+}

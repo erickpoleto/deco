@@ -159,7 +159,10 @@
     align-items: center;
 }
 .commentsleaved-div .usercomment-div div p{
-    margin-left: 10px;
+    margin-left: 60px;
+}
+.commentsleaved-div .usercomment-div div h5 img{
+    border-radius: 50%;
 }
 
 .commentsleaved-div .usercomment-div div button{
