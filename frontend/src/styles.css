@@ -3,6 +3,8 @@
 /*gallery*/
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+@import 'react-circular-progressbar/dist/styles.css'
+
 * {
     margin: 0;
     padding: 0;

@@ -7,12 +7,10 @@ module.exports = {
 
     async create(req, res) {
 
-        const {name, category, desc, tec} = req.body
-        const {originalname: imgName, size, key, location: url = ""} = req.file;
+        const {name, category, desc, tec, imageId} = req.body
 
         try{    
-            const image = await Image.create({imgName, size, key, url});
-            const product = await Product.create({name:name, category:category, desc:desc, tec:tec, imageId: image._id});
+            const product = await Product.create({name:name, category:category, desc:desc, tec:tec, imageId: imageId});
             return res.json({product})
 
         }catch(e){
@@ -25,11 +23,6 @@ module.exports = {
         const {originalname: imgName, size, key, location: url = ""} = req.file;
         try{    
             const image = await Image.create({imgName, size, key, url});
-            const product = await Product.findById(id, (err, product) => {
-                product.idImage.push(image._id),
-                product.save()
-                return res.json(product)
-            });
 
         }catch(e){
             return res.send({error: e})

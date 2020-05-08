@@ -95,9 +95,9 @@ export default class Home extends Component {
                         </div>
                     </div>
                     <ul>
-                        <li><Link style={{color:"white"}} to="/">Home</Link></li>
-                        <li><Link style={{color:"white"}} to="/works">Trabalhos</Link></li>
-                        <li><Link style={{color:"white"}} to="/enterprise">Empresa</Link></li>
+                        <li><Link style={{color:"white", textDecoration:'none'}} to="/">Home</Link></li>
+                        <li><Link style={{color:"white", textDecoration:'none'}} to="/works">Trabalhos</Link></li>
+                        <li><Link style={{color:"white", textDecoration:'none'}} to="/enterprise">Empresa</Link></li>
                     </ul>
                 </header>
                 <main>

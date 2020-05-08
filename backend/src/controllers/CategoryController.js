@@ -6,7 +6,7 @@ module.exports = {
         const {name} = req.body
         try{
             const category = await Category.create({name});
-            return res.json(category);
+            return res.status(200).send(category);
         }catch(e){
             return res.json(e);
         }

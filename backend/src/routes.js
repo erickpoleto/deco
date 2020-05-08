@@ -20,10 +20,13 @@ routes.delete('/delete', userController.delete);
 routes.post('/session', sessionController.create);
 
 //product
-routes.post('/newproduct',    multer(multerConfig).single('file'), authMiddleware, productController.create)
+routes.post('/newproduct', authMiddleware, productController.create)
 routes.get('/products', productController.index)
 routes.get('/product/:id', productController.indexProduct)
 routes.delete('/deleteproduct', authMiddleware, productController.delete)
+
+//createImages
+routes.post('/createImages',multer(multerConfig).single('file'), authMiddleware, productController.createImages)
 
 //category
 routes.post('/newcategory', authMiddleware, categoryController.create)

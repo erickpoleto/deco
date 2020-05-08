@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 
+import {logout} from '../../../services/auth'
 import api from '../../../services/api'
-import image from '../../../imgs/pp.png'
 
 import {Link} from 'react-router-dom'
+
+import HeaderDeco from '../../../components/Headerdeco/index'
 import './styles.css'
 
 export default class DecoHome extends Component {
@@ -23,26 +25,22 @@ export default class DecoHome extends Component {
         this.setState({products: docs, productInfo})
     }
 
+    handleLogout = async() => {
+        const {history} = this.props
+        logout()
+        history.push('/') 
+    }
+
     render(){
         const {products} = this.state
         return(
             <div className="decohome-container">
-                <header>
-                        <div>
-                            <span><img src={image} style={{width:"150px", height:"150px"}}></img></span>
-                            <span><h1>D<b>E</b>C<b>O</b></h1>
-                            <h2>Estruturas Metálicas</h2></span>
-                        </div>
-                        <ul>
-                            <li><Link style={{color:"white"}} to="">adicionar produtos</Link></li>
-                            <li><Link style={{color:"white"}} to="">adicionar servicos</Link></li>
-                            <li><Link style={{color:"white"}} to="">sair</Link></li>
-                        </ul>
-                </header>
+                <HeaderDeco></HeaderDeco>
                 <main>
+                    <input placeholder='procurar por produtos'></input>
                     <div className="products-div">
                         <ul>
-                            <li id='li-btn-add'><button id='btn-add'></button></li>
+                            <li id='li-btn-add'><button id='btn-add' onClick={e=>this.props.history.push('/addProduct')}></button></li>
                             {products.map(item => {
                                 return(
                                     <li>

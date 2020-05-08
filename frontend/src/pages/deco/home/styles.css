@@ -1,52 +1,19 @@
-.decohome-container{
-    margin: 0 auto;
-}
-
-.decohome-container header{
-    background: url('../../../imgs/6357.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-.decohome-container header div{
-    text-align: center;
-    color: white;
-    text-shadow: 1px 2px black;
-
-}
-
-.decohome-container header div span{
-    margin-bottom: 10px;
-}
-
-.decohome-container header div span h1{
-    color: #B1013D;
-    font-size: 5rem;
-}
-.decohome-container header div span h1 b{
-    color: #36057D;
-}
-.decohome-container header div span h2{
-    font-size: 2.2rem;
-}
-
-.decohome-container header ul{
-    display: flex;
-    background: #0e6ae2;
-    margin: 20px auto;
-    justify-content: center;
-}
-.decohome-container header ul li{
-    margin: 0 10px;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 10px;
-    
-    transition: 0.4s all;
-}
 
 .decohome-container main {
     max-width: 1200px;
-    margin: 0 auto;
+}
+
+.decohome-container main input {
+    position: relative;
+    bottom: 10px;    
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0 2px 3px black;
+}
+.decohome-container main input:focus{
+    border-color: #0e6ae2;
 }
 
 .decohome-container main .products-div ul{
