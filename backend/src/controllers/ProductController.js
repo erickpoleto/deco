@@ -11,23 +11,23 @@ module.exports = {
 
         try{    
             const product = await Product.create({name:name, category:category, desc:desc, tec:tec, imageId: imageId});
-            return res.json({product})
+            return res.json(product)
 
         }catch(e){
             return res.send({error: e})
         }
     },
-
-    async createImages(req, res) {
-        const {id} = req.body
-        const {originalname: imgName, size, key, location: url = ""} = req.file;
-        try{    
-            const image = await Image.create({imgName, size, key, url});
-
+    async productUpdate(req,res) {
+        const {id} = req.params
+        const {imageId} = req.body;
+       try{
+            const product = await Product.findByIdAndUpdate(id, {$set:{imageId: imageId}});
+            return res.send(product);
         }catch(e){
-            return res.send({error: e})
+            return res.status(400).send(e)
         }
-    },
+    }
+    ,
     async index(req, res){
         const {page} = req.query
         try{
@@ -51,10 +51,8 @@ module.exports = {
     },
 
     async delete(req, res){
-        const product = await Product.find({});
-        const image = await Image.findById(product.imageId);
-        await image.remove();
-        await product.remove();
+
+        const product = await Product.deleteMany({});
         return res.send()
     }
 }
