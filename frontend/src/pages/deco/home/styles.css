@@ -52,20 +52,20 @@
     border-radius: 5px;
 }
 
-#btn-remove {
+#btn-editar {
     padding: 10px;
     background-color: #0e6ae2;
     border: none;
     color: white;
     font-size: 20px;
 }
-#btn-remove::after {
+#btn-editar::after {
     
     font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f1f8";
     margin-left: 10px;
     color: black;
 }
-#btn-remove:hover {
+#btn-editar:hover {
     background-color: #B1013D;
     
 }

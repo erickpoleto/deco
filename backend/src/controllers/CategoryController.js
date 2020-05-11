@@ -1,5 +1,6 @@
 
 const Category = require('../models/Category')
+const StructCategory = require('../models/StructCategory')
 
 module.exports = {
     async create(req, res){
@@ -18,6 +19,24 @@ module.exports = {
             return res.json(category)
         }catch(e){
             return res.json(e);
+        }
+    },
+
+    async createStruct(req, res) {
+        const {name} = req.body
+        try{
+            const structCategory = await StructCategory.create({name})
+            return res.json(structCategory);
+        }catch(e){
+            return res.json(e)
+        }
+    },
+    async indexStruct(req, res) {
+        try{
+            const structCategory = await StructCategory.find({})
+            return res.json(structCategory);
+        }catch(e){
+            return res.json(e)
         }
     }
 }

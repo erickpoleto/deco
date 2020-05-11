@@ -3,6 +3,7 @@ const express = require('express');
 const userController = require('./controllers/UserController');
 const sessionController = require('./controllers/SessionController');
 const productController = require('./controllers/productController');
+const servicesController = require('./controllers/ServicesController');
 const imagesController = require('./controllers/ImagesController');
 const categoryController = require('./controllers/CategoryController');
 const commentsController = require('./controllers/CommentsController');
@@ -27,6 +28,11 @@ routes.get('/products', productController.index)
 routes.get('/product/:id', productController.indexProduct)
 routes.delete('/deleteproduct', authMiddleware, productController.delete)
 
+//services
+routes.post('/newservice', authMiddleware, servicesController.create)
+routes.get('/services', servicesController.index)
+routes.get('/service/:id', servicesController.indexService)
+
 //createImages
 routes.post('/createimages',multer(multerConfig).single('file'), authMiddleware, imagesController.create);
 routes.get('/indeximages', imagesController.index);
@@ -36,6 +42,8 @@ routes.delete('/deleteAll', imagesController.delete);
 //category
 routes.post('/newcategory', authMiddleware, categoryController.create)
 routes.get('/indexcategory', categoryController.index)
+routes.post('/newstructcategory', authMiddleware, categoryController.createStruct)
+routes.get('/indexstructcategory', categoryController.indexStruct)
 
 //comments
 

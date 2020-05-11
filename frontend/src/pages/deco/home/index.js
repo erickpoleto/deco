@@ -5,7 +5,7 @@ import api from '../../../services/api'
 
 import {Link} from 'react-router-dom'
 
-import HeaderDeco from '../../../components/Headerdeco/index'
+import HeaderDeco from '../Headerdeco/index'
 import './styles.css'
 
 export default class DecoHome extends Component {
@@ -47,7 +47,9 @@ export default class DecoHome extends Component {
                                         <p>id: {item._id}</p>
                                         <p>{item.name}</p>
                                         <img src={item.imageId[0].url}></img>
-                                        <button id='btn-remove'>remover</button>
+                                        <button id='btn-editar' onClick={e=> this.props.history.push(`/editproduct/${item._id}`)}>
+                                            editar
+                                        </button>
                                     </li>
                                 )
                             })}

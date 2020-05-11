@@ -14,11 +14,16 @@ const ServicesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    imageId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image',
-        require: true
+    tec: {
+        type: String
     },
+    imageId:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Image',
+            require: true
+        }
+    ],
     createAt: {
         type: Date,
         default: Date.now

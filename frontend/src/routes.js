@@ -13,6 +13,8 @@ import Contatos from './components/Contatos'
 import LoginDeco from './pages/deco/login'
 import DecoHome from './pages/deco/home'
 import addProduct from './pages/deco/addProduct'
+import addService from './pages/deco/addService'
+import EditProduct from './pages/deco/editProduct';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -37,6 +39,8 @@ export default function Router() {
                 <Route path="/logindeco" component={LoginDeco}/>
                 <PrivateRoute path="/decohome" component={DecoHome}/>
                 <PrivateRoute path="/addproduct" component={addProduct}/>
+                <PrivateRoute path="/addservice" component={addService}/>
+                <PrivateRoute path="/editproduct/:id" component={EditProduct}/>
             </Switch>
             <Contatos></Contatos>
             <Footer></Footer>

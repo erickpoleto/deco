@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-import image from '../../imgs/pp.png'
+import image from '../../../imgs/pp.png'
 import {Link} from 'react-router-dom'
 
 import './styles.css'
@@ -19,8 +19,8 @@ export default class HeaderDeco extends Component {
                     </div>
                     <ul>
                         <li><Link style={{color:"white", textDecoration:'none'}} to="/decohome">products</Link></li>
-                        <li><Link style={{color:"white", textDecoration:'none'}} to="">adicionar produtos</Link></li>
-                        <li><Link style={{color:"white", textDecoration:'none'}} to="">adicionar servicos</Link></li>
+                        <li><Link style={{color:"white", textDecoration:'none'}} to="/addProduct">adicionar produtos</Link></li>
+                        <li><Link style={{color:"white", textDecoration:'none'}} to="/addservice">adicionar servicos</Link></li>
                         <li><button id="btn-logout" onClick={this.handleLogout}>sair</button></li>
                     </ul>
                 </header>

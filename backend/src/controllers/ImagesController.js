@@ -16,8 +16,9 @@ module.exports = {
         return res.send(image)
     },
     async deleteById(req, res) {
+        
+        const {id} = req.body
         try{
-            const {id} = req.body
             const image = await Image.findByIdAndRemove(id)
             await image.save()
             return res.send(image)

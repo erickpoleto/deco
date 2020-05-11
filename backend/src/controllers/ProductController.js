@@ -51,8 +51,9 @@ module.exports = {
     },
 
     async delete(req, res){
-
-        const product = await Product.deleteMany({});
+        const {id} = req.params
+        const product = await Product.findByIdAndRemove({id});
+        product.save();
         return res.send()
     }
 }

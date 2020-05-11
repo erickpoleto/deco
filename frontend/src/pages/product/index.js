@@ -260,32 +260,20 @@ export default class Product extends Component {
                         <h2>Comentários</h2>
                         <div className='commentsleaved-div'>
                             {comments.map(comment => {
-                                if(this.state.infoUser.email === comment.email){
-                                    return(
+                                return(
                                     <div className="usercomment-div">
-                                        <div>
-                                            <h5><img src={comment.picture}></img> {comment.username}</h5>
-                                            <p>{comment.comment}</p>
-                                        </div>
+                                    <div>
+                                        <h5><img src={comment.picture}></img> {comment.username}</h5>
+                                        <p>{comment.comment}</p>
+                                    </div>
+                                    {this.state.infoUser.email === comment.email && ( 
                                         <div>
                                             <button onClick={this.removeComment} id={comment._id}  className="button-comment"></button>
-                                        </div>
+                                        </div>    
+                                        
+                                    )}
                                     </div>
-                                    )
-                                }
-                                else{
-                                    return(
-                                        <div className="usercomment-div">
-                                            <div>
-                                                <h5><img src={comment.picture}></img> {comment.username}</h5>
-                                                <p>{comment.comment}</p>
-                                            </div>
-                                            <div>
-                                                <button className="button-comment button--inative"></button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                                )
                             })
                             }
                         </div>

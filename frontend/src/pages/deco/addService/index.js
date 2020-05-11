@@ -10,15 +10,15 @@ import {FileList} from '../components/FileList/index.js'
 
 import "./styles.css";
 
-export default class addProduct extends Component {
+export default class addservice extends Component {
 
     state ={
-        prodName: "",
-        prodCategory : '',
-        prodDesc: "",
-        prodTec: "",
+        serviceName: "",
+        serviceCategory : '',
+        serviceDesc: "",
+        serviceTec: "",
 
-        categories: [],
+        structCategories: [],
         
         uploadedFiles: [],
         filesId: []
@@ -29,8 +29,8 @@ export default class addProduct extends Component {
     }
 
     loadCategories = async() => {
-        const response = await api.get('/indexcategory');
-        this.setState({categories:response.data})
+        const response = await api.get('/indexstructcategory');
+        this.setState({structCategories:response.data})
     }
 
     handleImageError = () => {
@@ -54,11 +54,11 @@ export default class addProduct extends Component {
             return;
         }
         
-        if(this.state.prodDesc.length < 10 || this.state.prodTec.length < 10){
+        if(this.state.serviceDesc.length < 10 || this.state.serviceTec.length < 10){
             alert("minimo de 20 caracteres por descrição")
             return;
         }
-        if(this.state.prodCategory < 1){
+        if(this.state.serviceCategory < 1){
             alert('categoria obrigatória');
             return;
         }
@@ -67,15 +67,15 @@ export default class addProduct extends Component {
             await this.processUpload();
 
             const data = {
-                name: this.state.prodName,
-                category: this.state.prodCategory,
-                desc: this.state.prodDesc,
-                tec: this.state.prodTec,
+                name: this.state.serviceName,
+                category: this.state.serviceCategory,
+                desc: this.state.serviceDesc,
+                tec: this.state.serviceTec,
                 imageId: this.state.filesId
             }
-            const response = await api.post('/newproduct', data)
+            const response = await api.post('/newservice', data)
             alert('itens enviados')
-            this.setState({prodName:"", prodCategory:"", prodDesc:"", prodTec:"", filesId:[], uploadedFiles:[]});
+            this.setState({serviceName:"", serviceCategory:"", serviceDesc:"", serviceTec:"", filesId:[], uploadedFiles:[]});
 
         }catch(e){
             console.info(e)
@@ -141,21 +141,21 @@ export default class addProduct extends Component {
     }
 
     render(){
-        const {categories, uploadedFiles} = this.state
+        const {structCategories, uploadedFiles} = this.state
         return(
-            <div className='addproduct-container'>
+            <div className='addservice-container'>
                <HeaderDeco></HeaderDeco> 
                <main>
-                   <h1>Adicionar Produto</h1>
-                   <form onSubmit={this.handleSubmit} className='form-addproduct'>
-                        <input placeholder='nome do produto' value={this.state.prodName} onChange={e=>this.setState({prodName: e.target.value})} required></input>
+                   <h1>Adicionar serviço</h1>
+                   <form onSubmit={this.handleSubmit} className='form-addservice'>
+                        <input placeholder='nome do service' value={this.state.serviceName} onChange={e=>this.setState({serviceName: e.target.value})} required></input>
                         <h2>Categoria</h2>
                         <div>
-                            {categories.map(category =>{
+                            {structCategories.map(category =>{
                                 return(
                                     <label>
                                         <input name='category' type='radio' value={category.name} 
-                                            onChange={e=> this.setState({prodCategory: e.target.value})} 
+                                            onChange={e=> this.setState({serviceCategory: e.target.value})} 
                                             required>
                                         </input>
                                         {category.name}
@@ -164,8 +164,8 @@ export default class addProduct extends Component {
                             })
                             }
                         </div>
-                        <textarea placeholder='Descrição' value={this.state.prodDesc} onChange={e=>this.setState({prodDesc: e.target.value})}></textarea>
-                        <textarea placeholder='Descrição técnica' value={this.state.prodTec} onChange={e=>this.setState({prodTec: e.target.value})}></textarea>
+                        <textarea placeholder='Descrição' value={this.state.serviceDesc} onChange={e=>this.setState({serviceDesc: e.target.value})}></textarea>
+                        <textarea placeholder='Descrição técnica' value={this.state.serviceTec} onChange={e=>this.setState({serviceTec: e.target.value})}></textarea>
                         <Upload onUpload={this.handleUpload}></Upload>
                         { !!uploadedFiles.length && (<FileList files={uploadedFiles} onDelete={this.handleDelete}></FileList>)}
                         <button type="submit">Adicionar</button>                        
