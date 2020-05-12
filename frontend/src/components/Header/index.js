@@ -7,9 +7,9 @@ import pp from '../../imgs/pp.png'
 
 export default function Header() {
     return (
+        <div>
         <div className='header-container'>
-            <main>
-                <Link to='/'><img src={pp} style={{width:"70px", height:"70px", marginLeft:"10px"}}></img></Link>
+            <header>
                     <div>
                         <nav>
                             <strong><Link style={{textDecoration:"none", color:"white"}} to='/'>Home</Link></strong>
@@ -21,7 +21,19 @@ export default function Header() {
                             <span><FaEnvelope color={"white"} size={20}></FaEnvelope><a href='#'>(51)999811810</a></span>
                         </nav>
                     </div>
-            </main>
+                
+            </header>
+        </div>
+            <div className="header-div">
+                <div>
+                    <span><img src={pp} style={{width:"100px", height:"100px"}}></img></span>
+                    <span><h1>D<b>E</b>C<b>O</b></h1>
+                    <h2>Estruturas Metálicas e Móveis rústicos</h2></span>
+                </div>
+                <form>
+                    <input placeholder="pesquise por produtos"></input>
+                </form>
+            </div>
         </div>
     )
     

@@ -49,7 +49,7 @@ export default class EditProduct extends Component {
                             return(
                                 <li>
                                     <img src={image.url}></img>
-                                    <button id="#exclude"></button>
+                                    <button id="#excluir">excluir</button>
                                 </li>
                             )
                         })}

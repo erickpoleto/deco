@@ -1,7 +1,7 @@
 .headerdeco-container header{
-    background: url('../../../imgs/6357.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: url('../../../imgs/background-pattern.png');
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .headerdeco-container header div{
     text-align: center;

@@ -1,11 +1,6 @@
 .home-container{
     margin: 0 auto;
-}
-
-.home-container header{
-    background: url('../../imgs/6357.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
+    max-width: 1200px;
 }
 
 .home-container .header-div{
@@ -14,70 +9,49 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
-    height: 400px;
+    background: url('../../imgs/decobackground.jpg');
+    box-shadow: 1px 3px 10px black;
 }
-.home-container .header-div div:nth-child(1){
+.home-container .header-div div{
     color: #B1013D;
-    text-shadow: 1px 2px black;
     display: flex;
     align-items: center;
+    font-family: monospace;
 }
 .home-container .header-div div:nth-child(1) h1{
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: bold;
 }
+
 .home-container .header-div div:nth-child(1) h1 b{
     color: #36057D;
 }
 .home-container .header-div div:nth-child(1) h2{
-    font-size: 2.2rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
     position: relative;
+    color: black;
 }
 .home-container .header-div div:nth-child(2) p {
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     font-family: roboto;
-    color: white;
-    text-shadow: 1px 3px black;
+    color: black;
+    text-align: right;
+    margin-right: 10px;
 }
 .home-container .header-div div:nth-child(2) {
     width: 35%;
-
 }
 
-.home-container .comments-div {
-    display: flex;
-    background-color: rgba(0,0,0,0.6);
-    justify-content: space-between;
-    padding: 30px 15px;
-    color: white;
+.carousel-item {
+    height: 500px;
 }
-.home-container .comments-div div {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-    height: 100px;
+.carousel-item img{
+    height: 600px;
 }
-.home-container .comments-div h3{
-    font-size: 20px;
-    font-family: roboto;
-}
-.home-container .comments-div p{
-    font-size: 20px;
-    font-family: roboto;
-}
-
-.carousel-caption {
-    right: 0;
-    left: 0;
-    top: 2px;
-}
-.carousel-indicators {
-    bottom: -40px;
-}
-.carousel-control-next, .carousel-control-prev {
-    display: none;
+.carousel-div {
+    width: 60%;
+    margin: 10px auto;
 }
 
 .home-container header ul{
@@ -85,12 +59,14 @@
     background: #0e6ae2;
     margin: 0 auto;
     justify-content: center;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
 }
 .home-container header ul li{
     margin: 0 10px;
     font-weight: bold;
-    font-size: 20px;
-    padding: 15px;
+    font-size: 17px;
+    padding: 10px;
     
     transition: 0.4s all;
 }
@@ -100,34 +76,63 @@
 }
 
 .home-container main {
-    margin: 0 auto;
+    margin: 20px auto;
     max-width: 1200px;
 }
-
+.home-container main form{
+    width: 100%;
+    margin-left: 5px;
+}
+.home-container main form input{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    box-shadow: 1px 1px 5px black;
+    border: 1px solid black;
+}
+.home-container main form input:focus{
+    border-color: #0e6ae2;
+}
 .home-container main .main-div{
     display: flex;
 }
 .home-container main .main-div .category-list{
     background: white;
-    padding: 10px;
     height: 100%;
     box-shadow: 2px 2px 10px black;
-    border-radius: 0 0 5px 5px;
     font-size: 20px;
+    margin-left: 5px;
 }
 .home-container main .main-div .category-list li{
-    margin-top: 10px;
-    font-size: 15px;
-    font-weight: 700;
+    
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    background-color: white;
+    width: 300px;
+    height: 100%;
+    font-size: 18px;
 }
-.home-container main .main-div .products-list{
-    display: flex;
-    flex-direction: row;
+
+.home-container main .main-div .category-list button{
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    text-align: left;
+}
+.home-container main .main-div .category-list button:hover{
+    background-color: gainsboro;
+}
+
+.home-container main .products-div .products-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     flex-wrap: wrap;
     margin-left: 20px;
     margin-top: 50px;
 }
-.home-container main .main-div .products-list li{
+.home-container main .products-div .products-list li{
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -135,18 +140,17 @@
     margin-top: 10px;
     margin-left: 20px;
     box-shadow: 2px 2px 10px black;
-    border-radius: 5px;
 }
-.home-container main .main-div .products-list li img{
-    width: 300px;
-    height: 300px;
+.home-container main .products-div .products-list li img{
+    width: 250px;
+    height: 250px;
 }
-.home-container main .main-div .products-list li strong{
+.home-container main .products-div .products-list li strong{
     font-size: 18px;
     padding: 5px;
     font-weight: 500;
 }
-.home-container main .main-div .products-list li button{
+.home-container main .products-div .products-list li button{
     font-size: 25px;
     padding: 10px;
     font-weight: 500;
@@ -154,8 +158,6 @@
     background-color: #0e6ae2;
     color: white;
     border: #0e6ae2;
-    border-radius: 0 0 5px 5px;
-
     transition: 0.5s all;
 }
 .home-container main .main-div .products-list li button:hover{

@@ -1,6 +1,7 @@
 .footer-container{
-    background-color: #313444;
+    background-color: #535353;
     color: white;
+    background-image: url("../../imgs/background-pattern.png");
 }
 .footer-container .access-section{
     

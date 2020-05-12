@@ -8,7 +8,6 @@ import Product from './pages/product';
 
 import Header from './components/Header/index'
 import Footer from './components/Footer/index'
-import Contatos from './components/Contatos'
 
 import LoginDeco from './pages/deco/login'
 import DecoHome from './pages/deco/home'
@@ -42,7 +41,6 @@ export default function Router() {
                 <PrivateRoute path="/addservice" component={addService}/>
                 <PrivateRoute path="/editproduct/:id" component={EditProduct}/>
             </Switch>
-            <Contatos></Contatos>
             <Footer></Footer>
         </BrowserRouter>
     );
