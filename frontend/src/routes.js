@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 
 import Home from './pages/home';
 import Product from './pages/product';
+import Cart from './pages/cart';
 
 import Header from './components/Header/index'
 import Footer from './components/Footer/index'
@@ -35,6 +36,7 @@ export default function Router() {
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/product/:id" component={Product}/>
+                <Route path="/cart" component={Cart}/>
                 <Route path="/logindeco" component={LoginDeco}/>
                 <PrivateRoute path="/decohome" component={DecoHome}/>
                 <PrivateRoute path="/addproduct" component={addProduct}/>

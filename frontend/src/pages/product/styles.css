@@ -25,26 +25,42 @@
     margin-left: 40px;
 }
 
+.consult-info .pagemap-div{
+    top: -20px;
+    left: -5px;
+}
+.consult-info .pagemap-div a{
+    margin-left: 5px;
+}
+.consult-info .pagemap-div a:nth-child(2)::after{
+    content: "";
+}
+.consult-info .pagemap-div a:nth-child(2)::before{
+    content: "/";
+    margin-right: 5px;
+}
+
 .productinfo-section .consult-info h2{
     font-size: 1.5rem;
-
+    border-bottom: 1px solid grey;
+    width: 100%;
+    padding: 10px 0;
 }
-.productinfo-section .consult-info span{
+.productinfo-section .consult-info .price-div{
     margin-top: 20px;
+}
+.productinfo-section .consult-info .price-div span strong{
+    font-weight: 700;
+    font-size: 20px;
+}
 
-}
-.productinfo-section .consult-info span strong{
-    font-weight: 500;
-    margin-right: 10px;
-}
 .productinfo-section .consult-info .btn-sol-consult{
-    padding: 20px;
+    padding: 15px;
     margin-top: 30px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: white;
     background-color: #0e6ae2;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
     transition: 0.5s all;
 }
@@ -53,29 +69,34 @@
     background-color: rgba(14, 106, 226, 0.8);
 }
 
-.productinfo-section .consult-info nav {
-    margin-top: 30px;
+.desc-section{
+    max-width: 940px;
+    margin: 0 auto;
 }
-.productinfo-section .consult-info nav ul{
+.desc-section ul{
     display: flex;
 }
 
-.productinfo-section .consult-info nav ul li{
+.desc-section ul li{
     cursor: pointer;
-}
-
-.productinfo-section .consult-info nav ul li:nth-child(2){
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .active-desc{
     border-bottom: 1px solid black;
+    font-weight: 700;
 }
 
-.productinfo-section .consult-info .desc-div{
+.productinfo-section .desc-section  .desc-div{
     margin-top: 10px;
     font-size: 15px;
     font-family: roboto;
+} 
+.desc-section .desc-div{
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: roboto;
+    text-align: left;
 } 
 
 .p-tec, .p-desc{
@@ -90,6 +111,7 @@
 .comments-section{
     margin: 50px auto 0 auto;
     padding: 20px;
+    max-width: 1000px;
 }
 
 .comments-section .leavecomment-div{
@@ -101,6 +123,7 @@
 
 .comments-section .leavecomment-div h4{
     margin-top: 10px;
+    font-size: 20px;
 }
 
 .comment-empity-alert{
@@ -147,6 +170,9 @@
 .comments-div{
     margin-top: 30px;
 }
+.comments-div strong{
+    font-size: 20px;
+}
 
 .commentsleaved-div .usercomment-div{
     margin-top: 10px;
@@ -184,8 +210,12 @@
 .image-gallery{
 }
 .image-gallery-image{
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
+    transition: 0.3s all;
+}
+.image-gallery-image:hover{
+    transform: scale(1.2);
 }
 
 .image-gallery-play-button{

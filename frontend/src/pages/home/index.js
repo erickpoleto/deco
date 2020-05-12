@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 
 import api from "../../services/api";
-import serrimg from '../../imgs/serralheiros.jpg'
+import serrimg from '../../imgs/shutterstock-539932924.png'
 
 import './styles.css'
 
@@ -107,6 +107,9 @@ export default class Home extends Component {
                             <form>
                                 <input placeholder="pesquisar produto"></input>
                             </form>
+                            <div className="pagemap-div">
+                                <Link to="/"></Link>
+                            </div>
                             <ul className="products-list">
                             {products.map(item => {
                                 return(

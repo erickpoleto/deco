@@ -44,14 +44,24 @@
 }
 
 .carousel-item {
-    height: 500px;
+    height: 550px;
 }
 .carousel-item img{
     height: 600px;
 }
 .carousel-div {
-    width: 60%;
+    width: 75%;
     margin: 10px auto;
+}
+.carousel-control-prev, .carousel-control-next{
+    display: none;
+}
+
+.carousel-indicators li{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+
 }
 
 .home-container header ul{
@@ -59,8 +69,6 @@
     background: #0e6ae2;
     margin: 0 auto;
     justify-content: center;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
 }
 .home-container header ul li{
     margin: 0 10px;
@@ -93,9 +101,33 @@
 .home-container main form input:focus{
     border-color: #0e6ae2;
 }
+
+.pagemap-div{
+    position: relative;
+    left: 10px;
+    top: 15px;
+
+}
+
+.pagemap-div a{
+    color: black;
+    font-size: 15px;
+}
+
+.pagemap-div a:hover{
+    color: #0e6ae2;
+    text-decoration: none;
+}
+
+.pagemap-div a::after{
+    font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f015";
+} 
+
 .home-container main .main-div{
     display: flex;
 }
+
+
 .home-container main .main-div .category-list{
     background: white;
     height: 100%;

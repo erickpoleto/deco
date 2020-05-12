@@ -1,9 +1,12 @@
 import React from 'react';
-import {FaEnvelope} from 'react-icons/fa'
+import {FaEnvelope, FaWhatsapp} from 'react-icons/fa'
 import './styles.css';
 
 import {Link, useHistory} from 'react-router-dom';
-import pp from '../../imgs/pp.png'
+
+import pp from '../../imgs/Ativo3.png'
+import projectImg from '../../imgs/project-management.png'
+import shopImg from '../../imgs/commerce-and-shopping.png'
 
 export default function Header() {
     return (
@@ -11,14 +14,19 @@ export default function Header() {
         <div className='header-container'>
             <header>
                     <div>
-                        <nav>
-                            <strong><Link style={{textDecoration:"none", color:"white"}} to='/'>Home</Link></strong>
-                            <strong><Link style={{textDecoration:"none", color:"white"}} to='/works'>Trabalhos</Link></strong>
-                            <strong><Link style={{textDecoration:"none", color:"white"}} to='/enterprise'>Empresa</Link></strong>
+                        <nav className="site-nav">
+                            <Link></Link>
+                            <Link></Link>
+                            <Link></Link>
                         </nav>
                         <nav>
-                            <span><FaEnvelope color={"white"} size={20}></FaEnvelope><Link to='/'>email</Link></span>
-                            <span><FaEnvelope color={"white"} size={20}></FaEnvelope><a href='#'>(51)999811810</a></span>
+                            <Link><img src={projectImg} style={{width:"30px", height: "30px"}}></img></Link>
+                            <Link style={{color:"white"}}>envie sua idéia, nos fazemos!</Link>
+                        </nav>
+                        <nav className="contact-nav">
+                            <button>Fale Conosco!</button>
+                            <a href='#'>telefone: (51)55555555</a>
+                            <a href='#'>whatsapp: (51)999811810</a>
                         </nav>
                     </div>
                 
@@ -26,13 +34,15 @@ export default function Header() {
         </div>
             <div className="header-div">
                 <div>
-                    <span><img src={pp} style={{width:"100px", height:"100px"}}></img></span>
-                    <span><h1>D<b>E</b>C<b>O</b></h1>
-                    <h2>Estruturas Metálicas e Móveis rústicos</h2></span>
+                    <span><Link to="/"><img src={pp} style={{width:"130px", height:"130px"}}></img></Link></span>
                 </div>
                 <form>
-                    <input placeholder="pesquise por produtos"></input>
+                    <input placeholder="digite o que você procura..."></input>
                 </form>
+                <div className="cart-div">
+                    <Link to="/cart"><img src={shopImg}></img></Link>
+                    <Link href="/cart"><strong> carrinho</strong></Link>
+                </div>
             </div>
         </div>
     )

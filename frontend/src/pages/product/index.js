@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import ImageGallery from 'react-image-gallery';
+import shopImg from '../../imgs/commerce-and-shopping.png'
 
 import Facebook from '../../components/Facebook/index.js'
 
 import api from '../../services/api'
 
-import {history, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import './styles.css'
-import './css/dialog.css'
 
 export default class Product extends Component {
 
@@ -66,42 +66,6 @@ export default class Product extends Component {
         this.loadComments(pageNumber);
     }
 
-    openDialog = (e) => {
-        const dialog = document.querySelector('.consult-dialog')
-        
-        if(e.target.value == 'Solicitar'){
-            dialog.classList.add('consult-dialog--open')
-        }else{
-            dialog.classList.remove('consult-dialog--open')
-        }
-    }
-
-    openFormContact = (e) => {
-        const dialogList = document.querySelector('.consult-dialog-list');
-        dialogList.classList.add('consult-dialog-list--close')
-
-        if(e.target.id == 'back'){
-            document.querySelector('.call-form').classList.remove('call-form--open')
-            document.querySelector('.email-form').classList.remove('email-form--open')
-            document.querySelector('.whats-form').classList.remove('whats-form--open')
-            document.querySelector('.btn-exit-back').classList.remove('btn-exit-back--open')
-            dialogList.classList.remove('consult-dialog-list--close')
-        }
-        
-        if(e.target.id == 'call'){
-            document.querySelector('.call-form').classList.add('call-form--open')
-            document.querySelector('.btn-exit-back').classList.add('btn-exit-back--open')
-        }
-        if(e.target.id == 'whats'){
-            document.querySelector('.whats-form').classList.add('whats-form--open')
-            document.querySelector('.btn-exit-back').classList.add('btn-exit-back--open')
-        }
-        if(e.target.id == 'email'){
-            document.querySelector('.email-form').classList.add('email-form--open')
-            document.querySelector('.btn-exit-back').classList.add('btn-exit-back--open')
-        }
-    }
-
     changeDesc = (e) => {
         if(e.target.id == 'tec' && !e.target.classList.contains('active-desc')){
             document.querySelector('#desc').classList.remove('active-desc');
@@ -142,7 +106,8 @@ export default class Product extends Component {
         try{
             const response = await api.post('/newcomment', data);
             alert("comentario enviado")
-            window.location.reload()
+            this.setState({comment: ""})
+            this.loadComments();
         }catch(e){
             if(e.response.status === 405){
                 alert('você só pode comentar 10 vezes neste produto')
@@ -157,7 +122,7 @@ export default class Product extends Component {
         try{
             const reponse = await api.delete(`/deletecomment/${e.target.id}`)
             alert('comentario removido')
-            window.location.reload()
+            this.loadComments();
         }catch(e){
             console.info(e)
         }
@@ -173,91 +138,49 @@ export default class Product extends Component {
                     document.querySelector('.consult-dialog').classList.remove('consult-dialog--open');
                 }}} className="productinfo-section">
                     <div className="image-div">
-                        <ImageGallery lazyLoad={true} items={image}/>
+                        <ImageGallery lazyLoad={true} showFullscreenButton={false} items={image}/>
                     </div>
                     <div className="consult-info">
+                        <div className="pagemap-div">
+                            <Link to="/"></Link>
+                            <Link to="/">{product.category}</Link>
+                        </div>
                         <h2>{product.name}</h2>
-                        <span>
-                            <strong>Quantidade</strong>
-                            <select>
-                                <option value='1'>1</option>
-                                <option value='1'>2</option>
-                                <option value='1'>3</option>
-                                <option value='more'>outros</option>
-                            </select>
-                        </span>
-                        <button className="btn-sol-consult" onClick={this.openDialog} value="Solicitar">Solicitar Consultoria</button>
-                        <div className='consult-dialog' role='dialog' aria-labelledby="dialog-tittle">
-                            <div className='consult-dialog-body'>
-
-                                <button className="btn-exit-back" id='back' onClick={this.openFormContact}></button>
-                                <button className="btn-exit-dialog" onClick={this.openDialog}>X</button>
-
-                                <div className='consult-dialog-list'>
-                                    <h3 id="dialog-tittle">qual forma de contato você prefere?</h3>
-                                    <ul>
-                                        <li id='call' onClick={this.openFormContact}>Ligação</li>
-                                        <li id='whats' onClick={this.openFormContact}>Whatsapp</li>
-                                        <li id='email' onClick={this.openFormContact}>Email</li>
-                                    </ul>
-                                </div>
-                                <form className="call-form">
-                                    <h3>Ligação</h3>
-                                    <label>Seu Nome</label>
-                                    <input type='text' placeholder='seu nome' required></input>
-                                    <label>Número</label>
-                                    <span>
-                                        <input type='text' placeholder="ddd" required></input>
-                                        <input type='text' placeholder='seu numero' required></input>
-                                    </span>
-                                    <button>Enviar!</button>
-                                </form>
-                                <form className="whats-form">
-                                    <h3>Whatsapp</h3>
-                                    <label>Seu Nome</label>
-                                    <input type='text' placeholder='seu nome' required></input>
-                                    <label>Seu Número</label>
-                                    <span>
-                                        <input type='text' placeholder="ddd" required></input>
-                                        <input type='text' placeholder='seu numero' required></input>
-                                    </span>
-                                    <button>Enviar!</button>
-                                </form>
-                                <form className="email-form">
-                                    <h3>Email</h3>
-                                    <label>Seu Nome</label>
-                                    <input type='text' placeholder='seu nome' required></input>
-                                    <label>Seu Email</label>
-                                    <input type='text' placeholder='seu Email' required></input>
-                                    <button>Enviar!</button>
-                                </form>
-                            </div>
-                            <div className='consult-dialog-overlay'></div>
+                        <div className="price-div">
+                            <span>
+                                <strong>R$ 500</strong>
+                                <p>até <b>3x</b> de <b>166</b></p>
+                            </span>
                         </div>
-                        <nav>
-                            <ul>
-                                <li id='desc' className='active-desc' onClick={this.changeDesc}>descrição</li>
-                                <li id='tec' onClick={this.changeDesc}>técnico</li>
-                            </ul>
-                        </nav>
-                        <div className="desc-div">
-                            <p className='p-desc active-desc-p'>{product.desc} lorem lore lorem lorem lorem lreom</p>
-                            <p className='p-tec'>{product.tec}</p>
-                        </div>
+                        <button className="btn-sol-consult" onClick={e=> this.props.history.push('/cart')} value="Solicitar">
+                            <img src={shopImg} style={{width: "30px", height: "30px"}}></img> Solicitar Consultoria!
+                        </button>
                     </div>
                 </section>
+
+                <section className="desc-section">
+                    <ul>
+                        <li id='desc' className='active-desc' onClick={this.changeDesc}>descrição</li>
+                        <li id='tec' onClick={this.changeDesc}>técnico</li>
+                    </ul>
+                    <div className="desc-div">
+                        <p className='p-desc active-desc-p'>{product.desc} lorem lore lorem lorem lorem lreom</p>
+                        <p className='p-tec'>{product.tec}</p>
+                    </div>
+                </section>
+
                 <section className="comments-section">
                     <div className="leavecomment-div">
                         <Facebook updateUserState={this.updateUserState}></Facebook>
                         <h4>Deixe um comentário</h4>
                         <span className="comment-empity-alert"><p>Para Enviar, a caixa precisa estar preenchida com pelo menos 10 caracteres</p></span>
                         <form onSubmit={this.submitCommentHandler} className="leavecomment-form">
-                            <textarea onChange={e => this.setState({comment:e.target.value})} className='leavecomment-textarea'></textarea>
+                            <textarea value={this.state.comment} onChange={e => this.setState({comment:e.target.value})} className='leavecomment-textarea'></textarea>
                             <button type='submit'>Enviar</button>
                         </form>
                     </div>
                     <div className="comments-div">
-                        <h2>Comentários</h2>
+                        <strong>Comentários</strong>
                         <div className='commentsleaved-div'>
                             {comments.map(comment => {
                                 return(
