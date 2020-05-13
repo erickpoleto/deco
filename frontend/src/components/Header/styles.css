@@ -50,17 +50,17 @@
     margin-right: 5px;
 }
 
-div .header-div{
+.header-div{
     display: flex;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: center;
     max-width: 1200px;
-    padding: 10px;
+    height: 80px;
     margin: 0 auto;
     background: url('../../imgs/25098.jpg');
     background-position: center;
     background-size: cover;
-    box-shadow: 1px 3px 10px black;
+    box-shadow: 1px 1px 3px black;
 }
 div .header-div div{
     color: #B1013D;
@@ -109,16 +109,14 @@ div .header-div .cart-div a:nth-child(1) {
     padding-right: 10px;
     background-color: white;
     padding: 5px;
+    border-radius:7px 0 0 7px;
 }
 div .header-div .cart-div a:nth-child(1):hover {
     background: #0e6ae2;
+    
 }
 
 div .header-div .cart-div a img {
     width: 30px;
     height: 30px;
 }
-
-
-
-

@@ -25,7 +25,8 @@ export default class Product extends Component {
         infoComments: {},
         comment: "",
         infoUser: {},
-        page: 1
+        page: 1,
+        cartItems: JSON.parse(localStorage.getItem("@cart-item") || "[]")
     }
 
     componentDidMount(){
@@ -39,7 +40,6 @@ export default class Product extends Component {
         this.setState({product:response.data, 
             image: response.data.imageId.map(item=>{return {original: item.url, thumbnail: item.url}}),
         })
-        console.info(this.state.comments)
     }
 
     loadComments = async(pageNumber=1) => {
@@ -128,8 +128,17 @@ export default class Product extends Component {
         }
     }
 
+    handleAddCart = () => {
+        if(this.state.cartItems.includes(this.state.product._id)){
+            return this.props.history.push("/cart")
+        }
+        this.state.cartItems.push(this.state.product._id)
+        localStorage.setItem("@cart-item", JSON.stringify(this.state.cartItems))
+        this.props.history.push("/cart")
+    }
+
     render(){
-        const {product, image, comments, infoComments} = this.state;
+        const {product, image, comments, cartItems, infoComments} = this.state;
         return(
             <div className='product-container'>
                 <section onKeyUp={e=>{
@@ -152,9 +161,20 @@ export default class Product extends Component {
                                 <p>até <b>3x</b> de <b>166</b></p>
                             </span>
                         </div>
-                        <button className="btn-sol-consult" onClick={e=> this.props.history.push('/cart')} value="Solicitar">
-                            <img src={shopImg} style={{width: "30px", height: "30px"}}></img> Solicitar Consultoria!
-                        </button>
+
+                        {cartItems.includes(product._id) && (
+                            <button className="btn-sol-consult" onClick={this.handleAddCart} value="Solicitar">
+                                <img src={shopImg} style={{width: "30px", height: "30px"}}></img> 
+                                Produto no carrinho!
+                            </button>
+                        )}
+                        {!cartItems.includes(product._id) && (
+                            <button className="btn-sol-consult" onClick={this.handleAddCart} value="Solicitar">
+                                <img src={shopImg} style={{width: "30px", height: "30px"}}></img> 
+                                Solicitar Consultoria
+                            </button>
+                        )}
+                        
                     </div>
                 </section>
 
@@ -195,6 +215,7 @@ export default class Product extends Component {
                                         </div>    
                                         
                                     )}
+                                    
                                     </div>
                                 )
                             })

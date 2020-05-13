@@ -3,46 +3,6 @@
     max-width: 1200px;
 }
 
-.home-container .header-div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: url('../../imgs/decobackground.jpg');
-    box-shadow: 1px 3px 10px black;
-}
-.home-container .header-div div{
-    color: #B1013D;
-    display: flex;
-    align-items: center;
-    font-family: monospace;
-}
-.home-container .header-div div:nth-child(1) h1{
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-.home-container .header-div div:nth-child(1) h1 b{
-    color: #36057D;
-}
-.home-container .header-div div:nth-child(1) h2{
-    font-size: 1.5rem;
-    font-weight: 600;
-    position: relative;
-    color: black;
-}
-.home-container .header-div div:nth-child(2) p {
-    font-size: 1.2rem;
-    font-family: roboto;
-    color: black;
-    text-align: right;
-    margin-right: 10px;
-}
-.home-container .header-div div:nth-child(2) {
-    width: 35%;
-}
-
 .carousel-item {
     height: 550px;
 }
@@ -52,6 +12,7 @@
 .carousel-div {
     width: 75%;
     margin: 10px auto;
+    position: sticky;
 }
 .carousel-control-prev, .carousel-control-next{
     display: none;
@@ -87,20 +48,6 @@
     margin: 20px auto;
     max-width: 1200px;
 }
-.home-container main form{
-    width: 100%;
-    margin-left: 5px;
-}
-.home-container main form input{
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    box-shadow: 1px 1px 5px black;
-    border: 1px solid black;
-}
-.home-container main form input:focus{
-    border-color: #0e6ae2;
-}
 
 .pagemap-div{
     position: relative;
@@ -131,7 +78,7 @@
 .home-container main .main-div .category-list{
     background: white;
     height: 100%;
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 1px 1px 4px black;
     font-size: 20px;
     margin-left: 5px;
 }
@@ -153,13 +100,30 @@
     border: none;
     text-align: left;
 }
+
 .home-container main .main-div .category-list button:hover{
     background-color: gainsboro;
 }
 
+.home-container main form{
+    width: 100%;
+    margin-left: 5px;
+}
+
+.home-container main form input{
+    width: 90%;
+    padding: 10px;
+    font-size: 18px;
+    box-shadow: 1px 1px 4px black;
+    border: 1px solid black;
+}
+
+.home-container main form input:focus{
+    border-color: #0e6ae2;
+}
+
 .home-container main .products-div .products-list{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     flex-wrap: wrap;
     margin-left: 20px;
     margin-top: 50px;
@@ -171,7 +135,7 @@
     padding: 10px 0 0 0;
     margin-top: 10px;
     margin-left: 20px;
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 1px 1px 5px black;
 }
 .home-container main .products-div .products-list li img{
     width: 250px;
