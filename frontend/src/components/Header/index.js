@@ -3,7 +3,6 @@ import {FaEnvelope, FaWhatsapp} from 'react-icons/fa'
 import './styles.css';
 
 import {Link, useHistory} from 'react-router-dom';
-import {StickyContainer} from 'react-sticky'
 
 import pp from '../../imgs/Ativo3.png'
 import projectImg from '../../imgs/project-management.png'

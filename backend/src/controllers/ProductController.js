@@ -7,16 +7,22 @@ module.exports = {
 
     async create(req, res) {
 
-        const {name, category, desc, tec, imageId} = req.body
+        const {name, category, estrutura, desc,
+            tampo, largura, profundidade, altura, preco, imageId} = req.body
 
         try{    
-            const product = await Product.create({name:name, category:category, desc:desc, tec:tec, imageId: imageId});
+            const product = await Product.create({name:name, category:category, 
+            estrutura:estrutura, tampo:tampo, largura:largura, profundidade:profundidade,
+            altura:altura, preco:preco, desc:desc,
+            imageId: imageId});
+
             return res.json(product)
 
         }catch(e){
             return res.send({error: e})
         }
     },
+    
     async productUpdate(req,res) {
         const {id} = req.params
         const {imageId} = req.body;
@@ -26,12 +32,14 @@ module.exports = {
         }catch(e){
             return res.status(400).send(e)
         }
-    }
-    ,
-    async index(req, res){
-        const {page} = req.query
+    },
+
+    async indexSearch(req, res){
+        const {category, search, sortFor, sort, page} = req.query
+        const regex = new RegExp(search, "i", "^\d$")
+        const catreg = new RegExp(category, "i")
         try{
-            const product = await Product.paginate({}, {populate:['imageId', 'commentsId'], page:page, limit: 12});
+            const product = await Product.paginate({$or:[{category:catreg, name:regex}]}, {sort: {[sortFor] : sort}, populate:['imageId'], page:page, limit: 12});
             return res.json(product)
         }catch(e){
             return res.json({error: e})
@@ -47,13 +55,36 @@ module.exports = {
         }catch(e){
             return res.json({error: e})
         }
-        
     },
 
-    async delete(req, res){
+    async indexRecent(req, res){
+        try{
+            const product = await Product.find({})
+                                         .sort({createdAt: 1})
+                                         .populate(["imageId"])
+                                         .limit(10)
+            return res.json(product);
+
+        }catch(e){
+            return res.json(e)
+        }
+    },
+    async deleteById(req, res){
         const {id} = req.params
-        const product = await Product.findByIdAndRemove({id});
-        product.save();
-        return res.send()
+        try{
+            const product = await Product.findByIdAndRemove({id});
+            product.save();
+            return res.send()
+        }catch(e){
+            return res.json(e);
+        }
+    },
+    async delete(req, res) {
+        try{
+            const product = await Product.deleteMany({})
+            return res.json(product)
+        }catch(e){
+            return res.json(e)
+        }
     }
 }

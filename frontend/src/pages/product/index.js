@@ -10,6 +10,8 @@ import api from '../../services/api'
 
 import {Link} from 'react-router-dom'
 
+
+import Header from '../../components/Header/index'
 import './styles.css'
 
 export default class Product extends Component {
@@ -65,22 +67,6 @@ export default class Product extends Component {
         const pageNumber = page + 1
         this.loadComments(pageNumber);
     }
-
-    changeDesc = (e) => {
-        if(e.target.id == 'tec' && !e.target.classList.contains('active-desc')){
-            document.querySelector('#desc').classList.remove('active-desc');
-            document.querySelector('.p-desc').classList.remove('active-desc-p');
-            document.querySelector('.p-tec').classList.add('active-desc-p');
-            e.target.classList.add('active-desc');
-        }
-        if(e.target.id == 'desc' && !e.target.classList.contains('active-desc')){
-            document.querySelector('#tec').classList.remove('active-desc');
-            document.querySelector('.p-tec').classList.remove('active-desc-p');
-            document.querySelector('.p-desc').classList.add('active-desc-p');
-            e.target.classList.add('active-desc');
-        }
-    }
-
     updateUserState = (item) => {
         this.setState({infoUser:item})
     }
@@ -140,94 +126,101 @@ export default class Product extends Component {
     render(){
         const {product, image, comments, cartItems, infoComments} = this.state;
         return(
-            <div className='product-container'>
-                <section onKeyUp={e=>{
-                    if((e.keyCode==27) && 
-                        document.querySelector('.consult-dialog').classList.contains('consult-dialog--open')){
-                    document.querySelector('.consult-dialog').classList.remove('consult-dialog--open');
-                }}} className="productinfo-section">
-                    <div className="image-div">
-                        <ImageGallery lazyLoad={true} showFullscreenButton={false} items={image}/>
-                    </div>
-                    <div className="consult-info">
-                        <div className="pagemap-div">
-                            <Link to="/"></Link>
-                            <Link to="/">{product.category}</Link>
+            <div>
+                
+                <Header></Header>
+                <div className='product-container'>
+                    
+                    <section onKeyUp={e=>{
+                        if((e.keyCode==27) && 
+                            document.querySelector('.consult-dialog').classList.contains('consult-dialog--open')){
+                        document.querySelector('.consult-dialog').classList.remove('consult-dialog--open');
+                    }}} className="productinfo-section">
+                        <div className="image-div">
+                            <ImageGallery lazyLoad={true} showFullscreenButton={false} items={image}/>
                         </div>
-                        <h2>{product.name}</h2>
-                        <div className="price-div">
-                            <span>
-                                <strong>R$ 500</strong>
-                                <p>até <b>3x</b> de <b>166</b></p>
-                            </span>
+                        <div className="consult-info">
+                            <div className="pagemap-div">
+                                <Link to="/"></Link>
+                                <Link to="/">{product.category}</Link>
+                            </div>
+                            <h2>{product.name}</h2>
+                            <div className="price-div">
+                                <span>
+                                    <strong>R$ {product.preco}</strong>
+                                    <p>até <b>3x</b> de <b>{Math.round(product.preco / 3)}</b></p>
+                                </span>
+                            </div>
+
+                            {cartItems.includes(product._id) && (
+                                <button className="btn-sol-consult" onClick={this.handleAddCart} value="Solicitar">
+                                    <img src={shopImg} style={{width: "28px", height: "28px", marginRight:"6px"}}></img> 
+                                    Produto no carrinho!
+                                </button>
+                            )}
+                            {!cartItems.includes(product._id) && (
+                                <button className="btn-sol-consult" onClick={this.handleAddCart} value="Solicitar">
+                                    <img src={shopImg} style={{width: "28px", height: "28px", marginRight:"6px"}}></img> 
+                                    Solicitar Consultoria
+                                </button>
+                            )}
+                            
                         </div>
+                    </section>
 
-                        {cartItems.includes(product._id) && (
-                            <button className="btn-sol-consult" onClick={this.handleAddCart} value="Solicitar">
-                                <img src={shopImg} style={{width: "30px", height: "30px"}}></img> 
-                                Produto no carrinho!
-                            </button>
-                        )}
-                        {!cartItems.includes(product._id) && (
-                            <button className="btn-sol-consult" onClick={this.handleAddCart} value="Solicitar">
-                                <img src={shopImg} style={{width: "30px", height: "30px"}}></img> 
-                                Solicitar Consultoria
-                            </button>
-                        )}
-                        
-                    </div>
-                </section>
+                    <section className="desc-section">
+                        <div className="desc-div">
+                            <h5>{product.name} <b>(Solicite uma consultoria para mais informações!)</b></h5>
+                            <p>Estrutura: <strong>{product.estrutura}</strong></p>
+                            <p>Tampo: <strong>{product.tampo}</strong></p>
+                            <p>Largura: <strong>{product.largura}cm</strong></p>
+                            <p>Altura: <strong>{product.altura}cm</strong></p>
+                            <p>Profundidade: <strong>{product.profundidade}cm</strong></p>
+                            <p>{product.desc}</p>
+                        </div>
+                    </section>
 
-                <section className="desc-section">
-                    <ul>
-                        <li id='desc' className='active-desc' onClick={this.changeDesc}>descrição</li>
-                        <li id='tec' onClick={this.changeDesc}>técnico</li>
-                    </ul>
-                    <div className="desc-div">
-                        <p className='p-desc active-desc-p'>{product.desc} lorem lore lorem lorem lorem lreom</p>
-                        <p className='p-tec'>{product.tec}</p>
-                    </div>
-                </section>
-
-                <section className="comments-section">
-                    <div className="leavecomment-div">
-                        <Facebook updateUserState={this.updateUserState}></Facebook>
-                        <h4>Deixe um comentário</h4>
-                        <span className="comment-empity-alert"><p>Para Enviar, a caixa precisa estar preenchida com pelo menos 10 caracteres</p></span>
-                        <form onSubmit={this.submitCommentHandler} className="leavecomment-form">
-                            <textarea value={this.state.comment} onChange={e => this.setState({comment:e.target.value})} className='leavecomment-textarea'></textarea>
-                            <button type='submit'>Enviar</button>
-                        </form>
-                    </div>
-                    <div className="comments-div">
-                        <strong>Comentários</strong>
-                        <div className='commentsleaved-div'>
-                            {comments.map(comment => {
-                                return(
-                                    <div className="usercomment-div">
-                                    <div>
-                                        <h5><img src={comment.picture}></img> {comment.username}</h5>
-                                        <p>{comment.comment}</p>
-                                    </div>
-                                    {this.state.infoUser.email === comment.email && ( 
+                    <section className="comments-section">
+                        <div className="leavecomment-div">
+                            <Facebook updateUserState={this.updateUserState}></Facebook>
+                            <h4>Deixe um comentário</h4>
+                            <span className="comment-empity-alert"><p>Para Enviar, a caixa precisa estar preenchida com pelo menos 10 caracteres</p></span>
+                            <form onSubmit={this.submitCommentHandler} className="leavecomment-form">
+                                <textarea value={this.state.comment} onChange={e => this.setState({comment:e.target.value})} className='leavecomment-textarea'></textarea>
+                                <button type='submit'>Enviar</button>
+                            </form>
+                        </div>
+                        <div className="comments-div">
+                            <strong>Comentários</strong>
+                            <div className='commentsleaved-div'>
+                                {comments.map(comment => {
+                                    return(
+                                        <div className="usercomment-div">
                                         <div>
-                                            <button onClick={this.removeComment} id={comment._id}  className="button-comment"></button>
-                                        </div>    
+                                            <h5><img src={comment.picture}></img> {comment.username}</h5>
+                                            <p>{comment.comment}</p>
+                                        </div>
+                                        {this.state.infoUser.email === comment.email && ( 
+                                            <div>
+                                                <button onClick={this.removeComment} id={comment._id}  className="button-comment"></button>
+                                            </div>    
+                                            
+                                        )}
                                         
-                                    )}
-                                    
-                                    </div>
-                                )
-                            })
-                            }
+                                        </div>
+                                    )
+                                })
+                                }
+                            </div>
+                            <div className="actions">
+                                <button disabled={this.state.page === 1} onClick={this.prevPage}><FaChevronLeft size={30}></FaChevronLeft></button>
+                                <p>Página {this.state.page} de {infoComments.pages}</p>    
+                                <button disabled={this.state.page === infoComments.pages} onClick={this.nextPage}><FaChevronRight size={30}></FaChevronRight></button>    
+                            </div>
                         </div>
-                        <div className="actions">
-                            <button disabled={this.state.page === 1} onClick={this.prevPage}><FaChevronLeft size={30}></FaChevronLeft></button>
-                            <p>Página {this.state.page} de {infoComments.pages}</p>    
-                            <button disabled={this.state.page === infoComments.pages} onClick={this.nextPage}><FaChevronRight size={30}></FaChevronRight></button>    
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
+                
             </div>
         )
     }

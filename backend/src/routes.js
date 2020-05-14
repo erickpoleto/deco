@@ -5,6 +5,7 @@ const sessionController = require('./controllers/SessionController');
 const productController = require('./controllers/productController');
 const servicesController = require('./controllers/ServicesController');
 const imagesController = require('./controllers/ImagesController');
+const mailController = require('./controllers/MailController')
 const categoryController = require('./controllers/CategoryController');
 const commentsController = require('./controllers/CommentsController');
 
@@ -24,9 +25,11 @@ routes.post('/session', sessionController.create);
 //product
 routes.post('/newproduct', authMiddleware, productController.create)
 routes.put('/productupdate/:id', authMiddleware, productController.productUpdate)
-routes.get('/products', productController.index)
+routes.get('/products', productController.indexSearch)
+routes.get('/recentproducts', productController.indexRecent)
 routes.get('/product/:id', productController.indexProduct)
 routes.delete('/deleteproduct', authMiddleware, productController.delete)
+routes.delete('/deleteproductbyid/:id', authMiddleware, productController.deleteById)
 
 //services
 routes.post('/newservice', authMiddleware, servicesController.create)
@@ -50,5 +53,9 @@ routes.get('/indexstructcategory', categoryController.indexStruct)
 routes.post('/newcomment', commentsController.create)
 routes.get('/indexcomment/:id', commentsController.index)
 routes.delete('/deletecomment/:id', commentsController.delete)
+
+//mails
+
+routes.post('/mails', mailController.create)
 
 module.exports = (routes);

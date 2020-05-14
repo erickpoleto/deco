@@ -19,20 +19,16 @@ export default class LoginDeco extends Component{
             email: this.state.email,
             password: this.state.password
         }
-        try{
-            const response = await api.post('/session', data);
+        const response = await api.post('/session', data)
+        .then((response)=>{
             login(response.data.token)
             alert('login efetuado')
             history.push('/DecoHome')
-            
-        }catch(e){
-            if(e.response.status === 402){
-                alert('email invalido')
-            }
-            else if(e.response.status === 401){
-                alert('senha invalida')
-            }
-        }
+        }).catch((err)=>{
+            alert(err)
+        });
+        
+        
     }
 
     render(){

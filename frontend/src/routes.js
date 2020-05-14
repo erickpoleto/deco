@@ -7,7 +7,6 @@ import Home from './pages/home';
 import Product from './pages/product';
 import Cart from './pages/cart';
 
-import Header from './components/Header/index'
 import Footer from './components/Footer/index'
 
 import LoginDeco from './pages/deco/login'
@@ -32,11 +31,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 export default function Router() {
     return(
         <BrowserRouter>
-            <Header></Header>
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/product/:id" component={Product}/>
-                <Route path="/cart" component={Cart}/>
+                <Route path="/cart" component={Cart}></Route>
+
                 <Route path="/logindeco" component={LoginDeco}/>
                 <PrivateRoute path="/decohome" component={DecoHome}/>
                 <PrivateRoute path="/addproduct" component={addProduct}/>

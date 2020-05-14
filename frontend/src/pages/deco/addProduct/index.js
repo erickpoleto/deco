@@ -12,14 +12,19 @@ import "./styles.css";
 
 export default class addProduct extends Component {
 
-    state ={
-        prodName: "",
-        prodCategory : '',
-        prodDesc: "",
-        prodTec: "",
+    state = {
+
+        name: "",
+        category : '',
+        estrutura: "",
+        tampo: "",
+        largura: 0,
+        profundidade: 0,
+        altura: 0,
+        preco: 0,
+        desc: "",
 
         categories: [],
-        
         uploadedFiles: [],
         filesId: []
     }
@@ -54,11 +59,7 @@ export default class addProduct extends Component {
             return;
         }
         
-        if(this.state.prodDesc.length < 10 || this.state.prodTec.length < 10){
-            alert("minimo de 20 caracteres por descrição")
-            return;
-        }
-        if(this.state.prodCategory < 1){
+        if(this.state.category < 1){
             alert('categoria obrigatória');
             return;
         }
@@ -67,15 +68,21 @@ export default class addProduct extends Component {
             await this.processUpload();
 
             const data = {
-                name: this.state.prodName,
-                category: this.state.prodCategory,
-                desc: this.state.prodDesc,
-                tec: this.state.prodTec,
+                name: this.state.name,
+                category: this.state.category, 
+                estrutura: this.state.estrutura, 
+                tampo: this.state.tampo,
+                largura: this.state.largura,
+                profundidade: this.state.profundidade,
+                altura: this.state.altura,
+                preco: this.state.preco,
+                desc: this.state.desc, 
                 imageId: this.state.filesId
             }
             const response = await api.post('/newproduct', data)
             alert('itens enviados')
-            this.setState({prodName:"", prodCategory:"", prodDesc:"", prodTec:"", filesId:[], uploadedFiles:[]});
+            this.setState({name:"", category:"", estrutura:"", tampo:"", largura: 0, profundidade: 0, altura:0, preco: 0            
+            ,filesId:[], uploadedFiles:[]});
 
         }catch(e){
             console.info(e)
@@ -148,14 +155,14 @@ export default class addProduct extends Component {
                <main>
                    <h1>Adicionar Produto</h1>
                    <form onSubmit={this.handleSubmit} className='form-addproduct'>
-                        <input placeholder='nome do produto' value={this.state.prodName} onChange={e=>this.setState({prodName: e.target.value})} required></input>
+                        <label>nome<input placeholder='nome do produto' value={this.state.name} onChange={e=>this.setState({name: e.target.value})} required></input></label>
                         <h2>Categoria</h2>
                         <div>
                             {categories.map(category =>{
                                 return(
                                     <label>
                                         <input name='category' type='radio' value={category.name} 
-                                            onChange={e=> this.setState({prodCategory: e.target.value})} 
+                                            onChange={e=> this.setState({category: e.target.value})} 
                                             required>
                                         </input>
                                         {category.name}
@@ -164,8 +171,13 @@ export default class addProduct extends Component {
                             })
                             }
                         </div>
-                        <textarea placeholder='Descrição' value={this.state.prodDesc} onChange={e=>this.setState({prodDesc: e.target.value})}></textarea>
-                        <textarea placeholder='Descrição técnica' value={this.state.prodTec} onChange={e=>this.setState({prodTec: e.target.value})}></textarea>
+                        <label>estrutura <input placeholder='estrutura' value={this.state.estrutura} onChange={e=>this.setState({estrutura: e.target.value})} required></input></label>
+                        <label>tampo <input placeholder='tampo' value={this.state.tampo} onChange={e=>this.setState({tampo: e.target.value})} required></input></label>
+                        <label>largura <input placeholder='largura' value={this.state.largura} onChange={e=>this.setState({largura: e.target.value})}></input></label>
+                        <label>altura <input placeholder='altura' value={this.state.altura} onChange={e=>this.setState({altura: e.target.value})}></input></label>
+                        <label>profundidade <input placeholder='altura' value={this.state.profundidade} onChange={e=>this.setState({profundidade: e.target.value})}></input></label>
+                        <label>preço <input placeholder='preço' value={this.state.preco} onChange={e=>this.setState({preco: e.target.value})}></input></label>
+                        <label id="desc-textarea">descrição <textarea placeholder='Descrição' value={this.state.desc} onChange={e=>this.setState({desc: e.target.value})}></textarea></label>
                         <Upload onUpload={this.handleUpload}></Upload>
                         { !!uploadedFiles.length && (<FileList files={uploadedFiles} onDelete={this.handleDelete}></FileList>)}
                         <button type="submit">Adicionar</button>                        

@@ -1,13 +1,13 @@
 .headerdeco-container header{
-    background: url('../../../imgs/background-pattern.png');
+    background: url('../../../imgs/25098.jpg');
+    background-position: center;
+    background-size: cover;
     max-width: 1200px;
     margin: 0 auto;
 }
 .headerdeco-container header div{
     text-align: center;
-    color: white;
-    text-shadow: 1px 2px black;
-
+    color: black;
 }
 
 .headerdeco-container header div span{

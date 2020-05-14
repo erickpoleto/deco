@@ -1,7 +1,8 @@
 .product-container{
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     font-family: roboto;
+    background-color: white;
 }
 
 .productinfo-section{
@@ -12,6 +13,7 @@
     padding: 30px;
 
 }
+
 
 .productinfo-section .image-div{
     width: 60%;
@@ -50,8 +52,8 @@
 .productinfo-section .consult-info .price-div{
     margin-top: 20px;
 }
-.productinfo-section .consult-info .price-div span strong{
-    font-weight: 700;
+.price-div span strong{
+    font-family: monospace;
     font-size: 20px;
 }
 
@@ -71,46 +73,38 @@
 }
 
 .desc-section{
-    max-width: 940px;
+    max-width: 960px;
     margin: 0 auto;
 }
-.desc-section ul{
-    display: flex;
-}
 
-.desc-section ul li{
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.active-desc{
-    border-bottom: 1px solid black;
-    font-weight: 700;
-}
-
-.productinfo-section .desc-section  .desc-div{
-    margin-top: 10px;
-    font-size: 15px;
-    font-family: roboto;
-} 
 .desc-section .desc-div{
-    margin-top: 10px;
-    font-size: 18px;
-    font-family: roboto;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    color: rgb(53, 52, 52);
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 1px 5px black;
 } 
-
-.p-tec, .p-desc{
-    display: none;
-}
-
-.active-desc-p {
-    display: block;
-}
-
+.desc-section .desc-div h5{
+    font-size: 16px;
+    border-bottom: 1px solid rgba(59, 58, 58, 0.582);
+    padding-bottom: 10px;
+} 
+.desc-section .desc-div h5 b{
+    font-size: 13px;
+} 
+.desc-section .desc-div p{
+    font-size: 14px;
+    font-family: monospace;
+    margin: 3px 0;
+} 
+.desc-section .desc-div strong{
+    font-size: 15px;
+    color: black;
+} 
 
 .comments-section{
-    margin: 50px auto 0 auto;
+    margin: 10px auto 0 auto;
     padding: 20px;
     max-width: 1000px;
 }
@@ -118,8 +112,7 @@
 .comments-section .leavecomment-div{
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px black;
+    box-shadow: 0 1px 5px black;
 }
 
 .comments-section .leavecomment-div h4{
@@ -138,7 +131,6 @@
 .comment-empity-alert p{
     background-color: red;
     color:white
-
 }
 
 .comments-section .leavecomment-div form {
@@ -186,10 +178,16 @@
     align-items: center;
 }
 .commentsleaved-div .usercomment-div div p{
-    margin-left: 60px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+.commentsleaved-div .usercomment-div div h5{
+    font-size: 18px;
 }
 .commentsleaved-div .usercomment-div div h5 img{
     border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 .commentsleaved-div .usercomment-div div button{

@@ -6,17 +6,34 @@ const ProductSchema = new mongoose.Schema({
         type : String,
         required: true
     },
+
     category: {
         type: String,
         required: true,
     },
-    desc: {
+
+    estrutura: {
         type: String,
         required: true
     },
-    tec: {
+    tampo: {
         type: String,
         required: true
+    },
+    largura: {
+        type: Number,
+    },
+    profundidade: {
+        type: Number,
+    },
+    altura: {
+        type: Number,
+    },
+    preco: {
+        type: Number,
+    },
+    desc: {
+        type: String
     },
     imageId:[
         {   
@@ -31,7 +48,7 @@ const ProductSchema = new mongoose.Schema({
             ref: 'Comments'
         }
     ],
-    createAt: {
+    createdAt: {
         type: Date,
         default: Date.now
     }
