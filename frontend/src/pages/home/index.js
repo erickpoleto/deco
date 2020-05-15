@@ -92,6 +92,8 @@ export default class Home extends Component {
                                             <strong>{item.name}</strong>
                                             
                                             <img src={item.imageId[0].url}></img>
+                                            <strong>R$ {item.preco}</strong>
+                                            <p style={{marginLeft:"5px"}}>até <b>3x</b> de <b>{Math.round(item.preco / 3)}</b></p>
                                             <Link to={`/product/${item._id}`}>
                                                 <button>Consultar</button>
                                             </Link>

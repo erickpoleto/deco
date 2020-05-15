@@ -9,16 +9,22 @@ import Header from '../../components/Header/index'
 import './styles.css'
 
 export default class Cart extends Component {
-
+    
     state = {
         cartItems: [],
         products: [],
         quantidade: [],
-        total: 0
+        total: 0,
+        name: "",        
+        email: "",
+        cpf: "",
+        cep: "",
+        ddd: "",
+        number: "",
+        msg: ""
     }
-
-    componentDidMount(){
-        this.loadProducts();
+    async componentDidMount(){
+        await this.loadProducts();
     }
 
 
@@ -32,7 +38,6 @@ export default class Cart extends Component {
                     subtotal:response.data.preco}],
             })
         }
-        console.info(this.state.quantidade)
     }
 
     handleDelete = async(id) => {
@@ -41,12 +46,48 @@ export default class Cart extends Component {
             quantidade: this.state.quantidade.filter(quant => quant.id != id)
         })
         localStorage.setItem("@cart-item", JSON.stringify(this.state.cartItems))
-        console.info(this.state.quantidade)
     }
 
-    handleSend = (e) => {
-    
+    handleSend = async(e) => {
+        e.preventDefault()
+        if(/\d/.test(this.state.name)){
+            const nome = document.querySelector(".nomespan")
+            nome.classList.add("ativaspan")
+            return;
+        }
+        const data = {
+            type: "consult",
+            name: this.state.name,
+            email: this.state.email,
+            cpf: this.state.cpf,
+            cep: this.state.cep,
+            ddd: this.state.ddd,
+            number: this.state.number,
+            msg: this.state.msg,
+            products: this.state.products.map((product, index)=>{
+                return{
+                    product: product,
+                    quant: this.state.quantidade[index].value
+                }
+            })
+        }
+
+        try{
+            await api.post("/mails", data).then(response=>{
+                alert("email enviado! entraremos em contato em breve")
+                localStorage.removeItem("@cart-item")
+                this.props.history.push("/")
+            }
+            ).catch(err => {
+                console.info(err)
+                alert("algo deu errado")
+            })
+        }catch(e){
+            console.info(e);
+            alert("algo deu errado");
+        }
     }
+
     
     handleModal = (e) => {
         const modal = document.querySelector(".modal");
@@ -81,8 +122,9 @@ export default class Cart extends Component {
         const {products, cartItems, quantidade, totalValue} = this.state
 
         return(
+            
             <div>
-                <Header {...this.props}></Header>
+                <Header alerta={this.alertaFilho} {...this.props}></Header>
                 <div className="cart-container"> 
                     
                     {cartItems.length < 1 && (
@@ -163,13 +205,15 @@ export default class Cart extends Component {
                                             <button className="closemodal" onClick={this.handleModal}>x</button>
                                         </div>
                                         <div className="modalmain-div">
-                                            <form className="modal-form">
-                                                <label>Nome <input placeholder="Nome" required></input></label>
-                                                <label>E-mail <input placeholder="Email" required></input></label>
-                                                <label>CPF <input placeholder="CPF" required></input></label>
-                                                <label>Telefone <input id="ddd" placeholder="ddd" required></input><input placeholder="xxxxxxxxx" required></input></label>
-                                                <label>CEP <input placeholder="Cep(opcional)"></input></label>
-                                                <label>Mensagem <textarea placeholder="Mensagem(opcionial)"></textarea></label>
+                                            <form onSubmit={this.handleSend} id="modal-form" className="modal-form">
+                                                <span className="nomespan"><p>seu nome não pode possuir numeros</p></span>
+                                                <label>Nome <input onChange={e=>this.setState({name: e.target.value})} placeholder="seu nome" required></input></label>
+                                                <label>E-mail <input onChange={e=>this.setState({email: e.target.value})} placeholder="seu Email" required></input></label>
+                                                <label>CPF <input type="number" onChange={e=>this.setState({cpf: e.target.value})} placeholder="seu CPF" required></input></label>
+                                                <label>celular/telefone<input type="number" onChange={e=>this.setState({ddd: e.target.value})} id="ddd" placeholder="ddd" required></input>
+                                                                <input type="number" onChange={e=>this.setState({number: e.target.value})} placeholder="xxxxxxxxx" required></input></label>
+                                                <label>CEP <input type="number" onChange={e=>this.setState({cep: e.target.value})} placeholder="seu cep" required></input></label>
+                                                <label>Mensagem <textarea onChange={e=>this.setState({msg: e.target.value})} placeholder="Mensagem(opcionial)"></textarea></label>
                                             </form>
                                             <table>
                                                 <thead>
@@ -208,7 +252,7 @@ export default class Cart extends Component {
                                         </div>
                                         <div className="modalfoot-div">
                                             <button className="closemodal" onClick={this.handleModal}>fechar</button>
-                                            <button onClick={e=>""}>Enviar</button>
+                                            <button type="submit" form="modal-form" onClick={e=>""}>Enviar</button>
                                         </div>
                                     </div>
                                     <div onClick={this.handleModal} className="modaloverlay-div">

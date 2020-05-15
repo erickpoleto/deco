@@ -14,21 +14,14 @@ module.exports = {
                         prod: products.map(prod=>{ 
                             return (
                                 " { "+
-                                "id: " + prod._id + ", " +
-                                "nome: " +prod.name + ", " +
-                                "link: " +prod.image[0].url +
+                                "id: " + prod.product._id + ", " +
+                                "nome: " +prod.product.name + ", " +
+                                "link: localhost:3000/product/"+ prod.product._id + "," +
+                                "quantidade" + prod.quant + 
                                 " } "  
                                 )
                         }), 
-                        number, cep, msg},
-                    attachments: products.map(prod=>{
-                        return {
-                            filename: prod.name+".txt",
-                            contentType: "text/plain",
-                            content: prod.image[0].url,
-                            cid: prod._id
-                        } 
-                    })
+                        number, cep, msg, email}
                 }, err =>{
                     if(err){
                         console.info(err)
@@ -42,7 +35,7 @@ module.exports = {
                     from: email,
                     subject: type,
                     template: '/contact',
-                    context: {name, ddd, number, msg}
+                    context: {name, ddd, number, msg, email}
                 }, err =>{
                     if(err){
                         console.info(err)

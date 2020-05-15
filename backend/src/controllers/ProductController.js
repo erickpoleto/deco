@@ -35,11 +35,12 @@ module.exports = {
     },
 
     async indexSearch(req, res){
-        const {category, search, sortFor, sort, page} = req.query
+        const {category, search, page} = req.query
+        const {sortOrd} = req.body
         const regex = new RegExp(search, "i", "^\d$")
         const catreg = new RegExp(category, "i")
         try{
-            const product = await Product.paginate({$or:[{category:catreg, name:regex}]}, {sort: {[sortFor] : sort}, populate:['imageId'], page:page, limit: 12});
+            const product = await Product.paginate({$or:[{category:catreg, name:regex}]}, {sort: {preco: sortOrd}, populate:['imageId'], page:page, limit: 12});
             return res.json(product)
         }catch(e){
             return res.json({error: e})

@@ -43,6 +43,35 @@ export default class Header extends Component {
         document.activeElement.blur();
         modal.classList.remove("modal--open")
     }
+    handleSendEmail = async(e) => {
+        e.preventDefault()
+        if(/\d/.test(this.state.name)){
+            const nome = document.querySelector(".spannome")
+            nome.classList.add("ativaspanome")
+            return;
+        }
+        const data = {
+            type: "callcenter",
+            name: this.state.name,
+            email: this.state.email,
+            ddd: this.state.ddd,
+            number: this.state.number,
+            msg: this.state.msg
+        }
+
+        try{
+            await api.post("/mails", data).then(response=>{
+                alert("email enviado! entraremos em contato em breve")
+            }
+            ).catch(err => {
+                console.info(err)
+                alert("algo deu errado")
+            })
+        }catch(e){
+            console.info(e);
+            alert("algo deu errado");
+        }
+    }
 
     render(){
         const {cartItems, categories} = this.state
@@ -111,10 +140,11 @@ export default class Header extends Component {
                                 <button onClick={this.handleModalHeader}>x</button>
                             </div>
                             <div className="modalheadermain-div">
-                                <form className="modalheader-form">
-                                    <label>Nome <input placeholder="Nome" required></input></label>
-                                    <label>E-mail <input placeholder="Email" required></input></label>
-                                    <label>Telefone <input id="ddd" placeholder="ddd" required></input><input placeholder="xxxxxxxxx" required></input></label>
+                                <form onSubmit={this.handleSendEmail} id="modalheader-form" className="modalheader-form">
+                                    <span className="spannome"><p>apenas letras permitidas para o campo nome</p></span>
+                                    <label>Nome <input onChange={e=>this.setState({name: e.target.value})} placeholder="Nome" required></input></label>
+                                    <label>E-mail <input onChange={e=>this.setState({email: e.target.value})} placeholder="Email" required></input></label>
+                                    <label>Telefone <input type="number" onChange={e=>this.setState({ddd: e.target.value})} id="ddd" placeholder="ddd" required></input><input placeholder="xxxxxxxxx" required></input></label>
                                     <label>Mensagem <textarea placeholder="Mensagem(opcionial)"></textarea></label>
                                 </form>
                                 <div>
@@ -140,7 +170,7 @@ export default class Header extends Component {
                             </div>
                             <div className="modalheaderfoot-div">
                                 <button className="closemodal" onClick={this.handleModalHeader}>fechar</button>
-                                <button onClick={e=>""}>Enviar</button>
+                                <button type="submit" form="modalheader-form">Enviar</button>
                             </div>
                         </div>
                         <div onClick={this.handleModalHeader} className="modalheaderoverlay-div">
