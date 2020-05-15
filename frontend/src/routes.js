@@ -4,6 +4,7 @@ import { isAuthenticated } from './services/auth'
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 
 import Home from './pages/home';
+import Moveis from './pages/moveis';
 import Product from './pages/product';
 import Cart from './pages/cart';
 
@@ -34,6 +35,7 @@ export default function Router() {
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/product/:id" component={Product}/>
+                <Route path="/moveis" component={Moveis}/>
                 <Route path="/cart" component={Cart}></Route>
 
                 <Route path="/logindeco" component={LoginDeco}/>

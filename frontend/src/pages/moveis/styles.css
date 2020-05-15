@@ -1,0 +1,92 @@
+.moveis-container main {
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.moveis-container main .pagemap-div{
+    display: block;
+    position: static;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.moveis-container main .main-div{
+    display: flex;
+}
+
+
+.moveis-container main .main-div .category-list{
+    background: white;
+    height: 100%;
+    box-shadow: 1px 1px 4px black;
+    font-size: 20px;
+    margin-left: 5px;
+}
+.moveis-container main .main-div .category-list li{
+    
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    background-color: white;
+    width: 180px;
+    height: 100%;
+    font-size: 18px;
+}
+
+.moveis-container main .main-div .category-list button{
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    text-align: left;
+}
+
+.moveis-container main .main-div .category-list button:hover{
+    background-color: gainsboro;
+}
+
+.moveis-container main .products-div h2{
+    margin-left: 20px;
+    font-size: 20px;
+    padding-bottom: 5px;
+    font-family: sans-serif;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+.moveis-container main .products-div .products-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}
+.moveis-container main .products-div .products-list li{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px 0 0 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    box-shadow: 1px 1px 5px black;
+}
+.moveis-container main .products-div .products-list li img{
+    width: 250px;
+    height: 250px;
+}
+.moveis-container main .products-div .products-list li strong{
+    font-size: 18px;
+    padding: 5px;
+    font-weight: 500;
+}
+.moveis-container main .products-div .products-list li button{
+    font-size: 25px;
+    padding: 10px;
+    font-weight: 500;
+    width: 100%;
+    background-color: #0e6ae2;
+    color: white;
+    border: #0e6ae2;
+    transition: 0.5s all;
+}
+.moveis-container main .main-div .products-list li button:hover{
+    background-color: rgba(14, 106, 226, 0.8);
+    cursor: pointer;
+}

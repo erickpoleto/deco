@@ -128,21 +128,17 @@ export default class Product extends Component {
         return(
             <div>
                 
-                <Header></Header>
+                <Header {...this.props}></Header>
                 <div className='product-container'>
                     
-                    <section onKeyUp={e=>{
-                        if((e.keyCode==27) && 
-                            document.querySelector('.consult-dialog').classList.contains('consult-dialog--open')){
-                        document.querySelector('.consult-dialog').classList.remove('consult-dialog--open');
-                    }}} className="productinfo-section">
+                    <section className="productinfo-section">
                         <div className="image-div">
                             <ImageGallery lazyLoad={true} showFullscreenButton={false} items={image}/>
                         </div>
                         <div className="consult-info">
                             <div className="pagemap-div">
                                 <Link to="/"></Link>
-                                <Link to="/">{product.category}</Link>
+                                <Link to={`/moveis?category=${product.category}`}>{product.category}</Link>
                             </div>
                             <h2>{product.name}</h2>
                             <div className="price-div">

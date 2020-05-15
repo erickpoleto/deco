@@ -82,7 +82,7 @@ export default class Cart extends Component {
 
         return(
             <div>
-                <Header></Header>
+                <Header {...this.props}></Header>
                 <div className="cart-container"> 
                     
                     {cartItems.length < 1 && (

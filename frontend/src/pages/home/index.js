@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Carousel from 'react-bootstrap/Carousel'
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
+
 import {Link} from 'react-router-dom';
 
 
@@ -43,7 +44,7 @@ export default class Home extends Component {
         const {products,imagesCarousel, category, productInfo, page} = this.state;
         return( 
             <div>
-                <Header></Header>
+                <Header {...this.props}></Header>
                 <div className="home-container">
                     
                     <header>
@@ -64,32 +65,26 @@ export default class Home extends Component {
                                     )
                                         })
                                     }
-                                </Carousel>
-                            </div>
-                        <ul>
-                            <li><Link style={{color:"white", textDecoration:'none'}} to="/">Home</Link></li>
-                            <li><Link style={{color:"white", textDecoration:'none'}} to="/works">Trabalhos</Link></li>
-                            <li><Link style={{color:"white", textDecoration:'none'}} to="/enterprise">sobre a empresa</Link></li>
-                        </ul>
+                            </Carousel>
+                        </div>
+                        <div className="divisa">
+
+                        </div>
+                        
                     </header>
                     <main>
                         <div className="main-div">
                             <ul className="category-list">
                                 {category.map(item=>{
                                     return(
-                                        <li><button>{item.name}</button></li>
+                                        <li><button onClick={e=>this.props.history.push(`/moveis?category=${item.name}`)}>{item.name}</button></li>
                                     )
                                 })}
                                 
                             </ul>
                             
                             <div className="products-div">
-                                <form>
-                                    <input placeholder="pesquisar produto"></input>
-                                </form>
-                                <div className="pagemap-div">
-                                    <Link to="/"></Link>
-                                </div>
+                                <h2>Móveis Adicionados recentemente</h2>
                                 <ul className="products-list">
                                 {products.map(item => {
                                     return(
