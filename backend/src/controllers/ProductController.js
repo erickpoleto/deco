@@ -15,7 +15,6 @@ module.exports = {
             estrutura:estrutura, tampo:tampo, largura:largura, profundidade:profundidade,
             altura:altura, preco:preco, desc:desc,
             imageId: imageId});
-
             return res.json(product)
 
         }catch(e){

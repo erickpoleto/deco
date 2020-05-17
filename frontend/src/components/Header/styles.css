@@ -8,11 +8,13 @@
 .header-container header {
     display: flex;
     align-items: center;
+
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .header-container header div{
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -169,6 +171,11 @@
     background-color: #f8f9fa;
     border-radius: 10px;
     border: none;
+}
+
+.dropdown-div button::after{
+    font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f078";
+    margin-left: 5px;
 }
 
 .dropdowncontent-div{
@@ -339,6 +346,11 @@
         flex-direction: row;
         z-index: 100;
         background-color: white;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+
     }
 
     .iconsearch{
@@ -356,22 +368,20 @@
         background-color: white;
         padding: 0px;
         
-        transition: width 2s, left 1s, opacity 0.5s, top 5s;
     }
     .header-menu-div .menu-nav--active{
         opacity: 1;
         width: 60%;
         top: 90px;
         left: 0;
-        transition: width 0.5s, opacity 0.5s, top 0.5s;
     }
 
     .menu-nav span{
         padding: 20px 0;
     }
     .menusearch-div div span img{
-        width: 145px;
-        height: 90px;
+        width: 130px;
+        height: 80px;
     }
     .header-menu-div .dropdown-div{
         display: flex;
@@ -386,6 +396,7 @@
     }
     .dropdowncontent-div{
         left: 100%;
+        display: none;
     }
     
     .search-form {
@@ -413,13 +424,13 @@
     .search-form button{
         border-radius: 0;
         padding-right: 13px;
+        
     }
     .menusearch-div .svg-button {
         margin-left: 10px;
         margin-right: 10px;
         border:none;
         background-color: white;
-        border-right: 1px solid black;
         padding: 0 5px;
         display: block;
     }
@@ -427,6 +438,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        
     }
+    .menusearch-div .cart-div a img{        
+        width: 20px;
+        height: 20px;
+    }
+
     
 }

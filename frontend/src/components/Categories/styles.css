@@ -1,3 +1,6 @@
+.category-div{
+    height: 100%;
+}
 .category-list{
     background: white;
     height: 100%;
@@ -34,8 +37,10 @@
     }
     .category-list li{
         width: 100%;
+        font-size: 16px;
     }
     .category-list li button{
         text-align: center;
+        font-size: 15px;
     }
 }

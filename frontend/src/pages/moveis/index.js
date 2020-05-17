@@ -13,6 +13,7 @@ export default class Moveis extends Component{
 
     state = {
         categories: [],
+        structCategories: [],
         products: [],
         productsInfo: {},
         search: this.props.location.search,
@@ -42,13 +43,13 @@ export default class Moveis extends Component{
         const response = await api.post(`/products?page=${page}&${this.state.search.replace("?", "")}`, data)
         const {docs, ...productsInfo} = response.data
         this.setState({products: docs, productsInfo})
-        console.info(this.state.search)
         
     }
 
     loadCategories = async() => {
         const response = await api.get("/indexcategory");
-        this.setState({categories: response.data})
+        const structCategories = await api.get("indexstructcategory")
+        this.setState({categories: response.data, structCategories: structCategories.data})
     }
 
     handleCategory = async(e)=> {
@@ -75,7 +76,7 @@ export default class Moveis extends Component{
 
     render(){
         
-        const {categories, products, productsInfo, search} = this.state
+        const {categories,structCategories, products, productsInfo, search} = this.state
 
         return(
             <div>
@@ -87,7 +88,9 @@ export default class Moveis extends Component{
                             <Link style={{marginLeft:"5px"}} to="/"> <b>></b> {search.replace(/[?](search|category)[=]/, "")}</Link>
                         </div>
                         <div className="main-div">
-                            <Categories handleCategory={this.handleCategory} value={categories}></Categories>
+                            <Categories handleCategory={this.handleCategory} categories={categories} structCategories={structCategories}>
+                                
+                            </Categories>
                             <div className="products-div">
                                 <div className="orderby-div">
                                     <button>Escolher ordem <FaChevronDown size={14}/></button>

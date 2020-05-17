@@ -3,7 +3,6 @@ const express = require('express');
 const userController = require('./controllers/UserController');
 const sessionController = require('./controllers/SessionController');
 const productController = require('./controllers/productController');
-const servicesController = require('./controllers/ServicesController');
 const imagesController = require('./controllers/ImagesController');
 const mailController = require('./controllers/MailController')
 const categoryController = require('./controllers/CategoryController');
@@ -30,11 +29,6 @@ routes.get('/recentproducts', productController.indexRecent)
 routes.get('/product/:id', productController.indexProduct)
 routes.delete('/deleteproduct', authMiddleware, productController.delete)
 routes.delete('/deleteproductbyid/:id', authMiddleware, productController.deleteById)
-
-//services
-routes.post('/newservice', authMiddleware, servicesController.create)
-routes.get('/services', servicesController.index)
-routes.get('/service/:id', servicesController.indexService)
 
 //createImages
 routes.post('/createimages',multer(multerConfig).single('file'), authMiddleware, imagesController.create);

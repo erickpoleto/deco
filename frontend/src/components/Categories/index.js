@@ -7,34 +7,49 @@ import './styles.css'
 export default class Categories extends Component{
 
     state = {
-        categories: []
+        categories: [],
+        structCat: []
     }
 
 
     componentDidUpdate(prevProps){
-        if(prevProps.value !== this.props.value){
+        if(prevProps.structCategories !== this.props.structCategories){
             this.handleParentState()
         }
     }
 
     handleParentState = async() => {
-        await this.setState({categories: this.props.value})
+        await this.setState({categories: this.props.categories, structCat: this.props.structCategories})
+
     }
 
     render(){
-        const {categories} = this.state 
+        const {categories, structCat} = this.state 
         return(
-            <ul className="category-list">
-                <li>categoria</li>
-                {categories.map(category=>{
-                    return(
-                        <li>
-                            <button id={category.name} onClick={this.props.handleCategory}>{category.name}</button>
-                        </li>
-                    )
-                })}
-                
-            </ul>
+            <div className="category-div">
+                <ul className="category-list">
+                    <li><b>Moveis Ferro e madeira</b></li>
+                    {categories.map(category=>{
+                        return(
+                            <li>
+                                <button id={category.name} onClick={this.props.handleCategory}>{category.name}</button>
+                            </li>
+                        )
+                    })}
+                    
+                </ul>
+                <ul className="category-list">
+                    <li><b>Estruturas Metálicas</b></li>
+                    {structCat.map(category=>{
+                        return(
+                            <li>
+                                <button id={category.name} onClick={this.props.handleCategory}>{category.name}</button>
+                            </li>
+                        )
+                    })
+                    }
+                </ul>
+            </div>
         )
     }
 }

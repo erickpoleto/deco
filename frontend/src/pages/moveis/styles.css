@@ -71,3 +71,13 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+@media(max-width: 700px){
+    .moveis-container{
+        
+        margin: 85px 0;
+    }
+    .moveis-container main .main-div{
+        flex-direction: column;
+    }
+}

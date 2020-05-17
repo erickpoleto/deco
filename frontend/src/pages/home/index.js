@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
 import Carousel from 'react-bootstrap/Carousel'
-import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
-
-import {Link} from 'react-router-dom';
-
-
 import api from "../../services/api";
 import serrimg from '../../imgs/shutterstock-539932924.png'
 
 import Products from '../../components/Products/index'
 import Header from '../../components/Header/index'
+import Categories from '../../components/Categories/index'
 import './styles.css'
 
 export default class Home extends Component {
@@ -18,7 +14,8 @@ export default class Home extends Component {
     state = {
         imagesCarousel: [],
         products: [],
-        category: [],
+        categories: [],
+        structCategories: []
         
     }
 
@@ -29,19 +26,22 @@ export default class Home extends Component {
 
     loadProducts = async () => {
         const response = await api.get(`/recentproducts`);
-        const category = await api.get('/indexcategory');
-        this.setState({products: response.data, category:category.data})
+        const categories = await api.get('/indexcategory');
+        const structCategories = await api.get('/indexstructcategory');
+        this.setState({products: response.data, categories:categories.data, structCategories:structCategories.data})
     }
 
     loadImagesCarousel = async() => {
         this.state.imagesCarousel.push(serrimg);
     }
 
-  
+    handleCategory = async(e)=> {
+        await this.props.history.push(`/moveis?category=${e.target.id}`)
+    }
 
     render(){
         
-        const {products,imagesCarousel, category, productInfo, page} = this.state;
+        const {products,imagesCarousel, categories, structCategories, productInfo, page} = this.state;
         return( 
             <div>
                 <Header {...this.props}></Header>
@@ -74,16 +74,9 @@ export default class Home extends Component {
                     </header>
                     <main>
                         <div className="main-div">
-                            <ul className="category-list">
-                                {category.map(item=>{
-                                    return(
-                                        <li><button onClick={e=>this.props.history.push(`/moveis?category=${item.name}`)}>{item.name}</button></li>
-                                    )
-                                })}
-                                
-                            </ul>
+                            <Categories handleCategory={this.handleCategory} categories={categories} structCategories={structCategories}></Categories>
                             <div>
-                                <h2 style={{fontSize: '26px', marginLeft:"10px"}}>Móveis Adicionados recentemente</h2>
+                                <h2>Móveis Adicionados recentemente</h2>
                                 <Products value={this.state.products}></Products>
                             </div>
                         </div>

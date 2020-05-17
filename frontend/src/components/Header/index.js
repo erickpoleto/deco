@@ -144,9 +144,9 @@ export default class Header extends Component {
                         <div className="menusearch-div">
                             <button onClick={this.handleOpenMenuNav} className="svg-button">
                                 <svg viewBox="0 0 100 80" width="30" height="40">
-                                    <rect width="100" height="10"></rect>
-                                    <rect y="30" width="100" height="10"></rect>
-                                    <rect y="60" width="100" height="10"></rect>
+                                    <rect classList="bar1" width="100" height="10"></rect>
+                                    <rect classList="bar2" y="30" width="100" height="10"></rect>
+                                    <rect classList="bar3" y="60" width="100" height="10"></rect>
                                 </svg>
                             </button>
                             <div>
@@ -163,52 +163,51 @@ export default class Header extends Component {
                                 
                             </div>
                         </div>
-                        
                     </div>
                 </section>
-                    <div className="modalheader">
-                        <div className="modalheadercontent-div">
-                            <div className="modalheadertittle-div">
-                                <h3>Fale Conosco</h3>
-                                <button onClick={this.handleModalHeader}>x</button>
-                            </div>
-                            <div className="modalheadermain-div">
-                                <form onSubmit={this.handleSendEmail} id="modalheader-form" className="modalheader-form">
-                                    <span className="spannome"><p>apenas letras permitidas para o campo nome</p></span>
-                                    <label>Nome <input onChange={e=>this.setState({name: e.target.value})} placeholder="Nome" required></input></label>
-                                    <label>E-mail <input onChange={e=>this.setState({email: e.target.value})} placeholder="Email" required></input></label>
-                                    <label>Telefone <input type="number" onChange={e=>this.setState({ddd: e.target.value})} id="ddd" placeholder="ddd" required></input><input placeholder="xxxxxxxxx" required></input></label>
-                                    <label>Mensagem <textarea placeholder="Mensagem(opcionial)"></textarea></label>
-                                </form>
-                                <div>
-                                    <ul>
-                                        <li>
-                                            <strong>CNPJ</strong>
-                                            <p>454545.85858</p>
-                                        </li>
-                                        <li>
-                                            <strong>telefone</strong>
-                                            <p>(51)55555555555</p>
-                                        </li>
-                                        <li>
-                                            <strong>whatsapp</strong>
-                                            <p>(51)44554455</p>
-                                        </li>
-                                        <li>
-                                            <strong>Email</strong>
-                                            <p>contato@taltal.com.br</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="modalheaderfoot-div">
-                                <button className="closemodal" onClick={this.handleModalHeader}>fechar</button>
-                                <button type="submit" form="modalheader-form">Enviar</button>
+                <div className="modalheader">
+                    <div className="modalheadercontent-div">
+                        <div className="modalheadertittle-div">
+                            <h3>Fale Conosco</h3>
+                            <button onClick={this.handleModalHeader}>x</button>
+                        </div>
+                        <div className="modalheadermain-div">
+                            <form onSubmit={this.handleSendEmail} id="modalheader-form" className="modalheader-form">
+                                <span className="spannome"><p>apenas letras permitidas para o campo nome</p></span>
+                                <label>Nome <input onChange={e=>this.setState({name: e.target.value})} placeholder="Nome" required></input></label>
+                                <label>E-mail <input onChange={e=>this.setState({email: e.target.value})} placeholder="Email" required></input></label>
+                                <label>Telefone <input type="number" onChange={e=>this.setState({ddd: e.target.value})} id="ddd" placeholder="ddd" required></input><input placeholder="xxxxxxxxx" required></input></label>
+                                <label>Mensagem <textarea placeholder="Mensagem(opcionial)"></textarea></label>
+                            </form>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <strong>CNPJ</strong>
+                                        <p>454545.85858</p>
+                                    </li>
+                                    <li>
+                                        <strong>telefone</strong>
+                                        <p>(51)55555555555</p>
+                                    </li>
+                                    <li>
+                                        <strong>whatsapp</strong>
+                                        <p>(51)44554455</p>
+                                    </li>
+                                    <li>
+                                        <strong>Email</strong>
+                                        <p>contato@taltal.com.br</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div onClick={this.handleModalHeader} className="modalheaderoverlay-div">
+                        <div className="modalheaderfoot-div">
+                            <button className="closemodal" onClick={this.handleModalHeader}>fechar</button>
+                            <button type="submit" form="modalheader-form">Enviar</button>
                         </div>
                     </div>
+                    <div onClick={this.handleModalHeader} className="modalheaderoverlay-div">
+                    </div>
+                </div>
             </div>
         )
     }
