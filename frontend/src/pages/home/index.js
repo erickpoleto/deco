@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 import api from "../../services/api";
 import serrimg from '../../imgs/shutterstock-539932924.png'
 
-
+import Products from '../../components/Products/index'
 import Header from '../../components/Header/index'
 import './styles.css'
 
@@ -82,26 +82,9 @@ export default class Home extends Component {
                                 })}
                                 
                             </ul>
-                            
-                            <div className="products-div">
-                                <h2>Móveis Adicionados recentemente</h2>
-                                <ul className="products-list">
-                                {products.map(item => {
-                                    return(
-                                        <li key={item._id}>
-                                            <strong>{item.name}</strong>
-                                            
-                                            <img src={item.imageId[0].url}></img>
-                                            <strong>R$ {item.preco}</strong>
-                                            <p style={{marginLeft:"5px"}}>até <b>3x</b> de <b>{Math.round(item.preco / 3)}</b></p>
-                                            <Link to={`/product/${item._id}`}>
-                                                <button>Consultar</button>
-                                            </Link>
-                                        </li>
-                                    )})
-                                    }
-                                </ul>
-                                
+                            <div>
+                                <h2 style={{fontSize: '26px', marginLeft:"10px"}}>Móveis Adicionados recentemente</h2>
+                                <Products value={this.state.products}></Products>
                             </div>
                         </div>
                         

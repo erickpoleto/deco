@@ -3,9 +3,11 @@ import {Link} from 'react-router-dom'
 
 import api from '../../services/api'
 import Header from '../../components/Header'
+import Products from '../../components/Products'
+import Categories from '../../components/Categories'
 
 import './styles.css'
-import { FaChevronDown } from 'react-icons/fa'
+import { FaChevronDown,FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 export default class Moveis extends Component{
 
@@ -14,7 +16,8 @@ export default class Moveis extends Component{
         products: [],
         productsInfo: {},
         search: this.props.location.search,
-        sortOrd: 1
+        sortOrd: 1,
+        page: 1
     }
 
     componentDidMount(){
@@ -32,13 +35,14 @@ export default class Moveis extends Component{
         }
     }
 
-    loadProducts = async() => {
+    loadProducts = async(page=1) => {
         const data = {
             sortOrd : this.state.sortOrd
         }
-        const response = await api.post(`/products${this.state.search}`, data)
-        const {docs, productsInfo} = response.data
+        const response = await api.post(`/products?page=${page}&${this.state.search.replace("?", "")}`, data)
+        const {docs, ...productsInfo} = response.data
         this.setState({products: docs, productsInfo})
+        console.info(this.state.search)
         
     }
 
@@ -51,10 +55,27 @@ export default class Moveis extends Component{
         await this.props.history.push(`/moveis?category=${e.target.id}`)
     }
 
+    prevPage = () => {
+        const { page, productsInfo} = this.state;
+        if(productsInfo.pages === 1 || productsInfo.page === "1"){
+            return;
+        }
+        const pageNumber = page - 1
+        this.loadComments(pageNumber)
+    }
+    nextPage = () => {
+        const { page, productsInfo} = this.state;
+        if (page === productsInfo.pages) {
+            return;
+        }
+        const pageNumber = page + 1
+        this.loadComments(pageNumber);
+    }
+
 
     render(){
         
-        const {categories, products, search} = this.state
+        const {categories, products, productsInfo, search} = this.state
 
         return(
             <div>
@@ -66,16 +87,7 @@ export default class Moveis extends Component{
                             <Link style={{marginLeft:"5px"}} to="/"> <b>></b> {search.replace(/[?](search|category)[=]/, "")}</Link>
                         </div>
                         <div className="main-div">
-                            <ul className="category-list">
-                                {categories.map(item=>{
-                                    return(
-                                        <li>
-                                            <button id={item.name} onClick={this.handleCategory}>{item.name}</button>
-                                        </li>
-                                    )
-                                })}
-                                
-                            </ul>
+                            <Categories handleCategory={this.handleCategory} value={categories}></Categories>
                             <div className="products-div">
                                 <div className="orderby-div">
                                     <button>Escolher ordem <FaChevronDown size={14}/></button>
@@ -84,23 +96,15 @@ export default class Moveis extends Component{
                                         <button onClick={e=>{this.setState({sortOrd: -1})}} className="sortbutton">$ Maior preço</button>
                                     </div>
                                 </div>
-                                <h2>{search.replace(/[?](search|category)[=]/, "")}</h2>
-                                <ul className="products-list">
-                                {products.map(item => {
-                                    return(
-                                        <li key={item._id}>
-                                            <strong>{item.name}</strong>
-                                            <img src={item.imageId[0].url}></img>
-                                            <strong>R$ {item.preco}</strong>
-                                            <p style={{marginLeft:"5px"}}>até <b>3x</b> de <b>{Math.round(item.preco / 3)}</b></p>
-                                            <Link to={`/product/${item._id}`}>
-                                                <button>Consultar</button>
-                                            </Link>
-                                        </li>
-                                    )})
-                                    }
-                                </ul>
                                 
+                                <h2>{search.replace(/[?](search|category)[=]/, "")}</h2>
+                                <Products value={products} {...this.props}></Products>
+                                
+                                <div className="actions">
+                                    <button disabled={this.state.page === 1} onClick={this.prevPage}><FaChevronLeft size={30}></FaChevronLeft></button>
+                                    <p>Página {this.state.page} de {productsInfo.pages}</p>    
+                                    <button disabled={this.state.page === productsInfo.pages} onClick={this.nextPage}><FaChevronRight size={30}></FaChevronRight></button> 
+                                </div>
                             </div>
                         </div>
                     </main>

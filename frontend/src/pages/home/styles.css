@@ -12,7 +12,6 @@
 .carousel-div {
     width: 80%;
     margin: 10px auto;
-    position: sticky;
 }
 .carousel-control-prev, .carousel-control-next{
     display: none;
@@ -64,102 +63,26 @@
     display: flex;
 }
 
+@media(max-width:700px){
+    .home-container {
+    }
+    .carousel-div{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .carousel-item{
+        height: 350px;
+    }
+    .carousel-item img{
+        height: 350px;
+    }
+    .carousel-indicators li{
+        width: 10px;
+        height: 10px;
+    }
 
-.home-container main .main-div .category-list{
-    background: white;
-    height: 100%;
-    box-shadow: 1px 1px 4px black;
-    font-size: 20px;
-    margin-left: 5px;
-}
-.home-container main .main-div .category-list li{
-    
-    border-bottom: 1px solid black;
-    font-weight: 500;
-    background-color: white;
-    width: 180px;
-    height: 100%;
-    font-size: 18px;
-}
-
-.home-container main .main-div .category-list button{
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-    background: white;
-    border: none;
-    text-align: left;
-}
-
-.home-container main .main-div .category-list button:hover{
-    background-color: gainsboro;
-}
-
-.home-container main .products-div h2{
-    margin-left: 20px;
-    font-size: 20px;
-    padding-bottom: 5px;
-    font-family: sans-serif;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    width: 100%;
-}
-
-.home-container main .products-div .products-list{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 20px;
-}
-.home-container main .products-div .products-list li{
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    padding: 10px 0 0 0;
-    margin-top: 10px;
-    margin-left: 20px;
-    box-shadow: 1px 1px 5px black;
-}
-.home-container main .products-div .products-list li img{
-    width: 250px;
-    height: 250px;
-}
-.home-container main .products-div .products-list li strong{
-    font-size: 18px;
-    padding: 5px;
-    font-weight: 500;
-}
-.home-container main .products-div .products-list li button{
-    font-size: 25px;
-    padding: 10px;
-    font-weight: 500;
-    width: 100%;
-    background-color: #0e6ae2;
-    color: white;
-    border: #0e6ae2;
-    transition: 0.5s all;
-}
-.home-container main .main-div .products-list li button:hover{
-    background-color: rgba(14, 106, 226, 0.8);
-    cursor: pointer;
-}
-.actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 30px;
-    padding: 20px;
-    width: 50%;
-    margin: 0 auto;
-}
-.actions button{
-    border: none;
-    background: none;
-}
-.actions button:hover{
-    background-color: rgba(255,255,255,0.5);
-    cursor: pointer;
-}
-.actions p{
-    font-size: 18px;
-    font-weight: bold;
+    .home-container .main-div{
+        flex-direction: column;
+    }
 }
 

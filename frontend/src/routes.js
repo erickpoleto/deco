@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { isAuthenticated } from './services/auth'
 
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
@@ -8,6 +8,7 @@ import Moveis from './pages/moveis';
 import Product from './pages/product';
 import Cart from './pages/cart';
 
+import Header from './components/Header/index'
 import Footer from './components/Footer/index'
 
 import LoginDeco from './pages/deco/login'
@@ -29,7 +30,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     />
   );
 
-export default function Router() {
+export default class Router extends Component {
+  render(){
     return(
         <BrowserRouter>
             <Switch>
@@ -47,4 +49,5 @@ export default function Router() {
             <Footer></Footer>
         </BrowserRouter>
     );
+  }
 }

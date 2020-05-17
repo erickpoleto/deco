@@ -124,7 +124,7 @@ export default class Cart extends Component {
         return(
             
             <div>
-                <Header alerta={this.alertaFilho} {...this.props}></Header>
+                <Header value={cartItems} {...this.props}></Header>
                 <div className="cart-container"> 
                     
                     {cartItems.length < 1 && (

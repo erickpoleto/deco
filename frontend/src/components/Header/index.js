@@ -24,6 +24,12 @@ export default class Header extends Component {
         this.loadCategories()
     }
 
+    componentDidUpdate(prevProps){
+        if(prevProps.value != this.props.value){
+            this.setState({cartItems: this.props.value})
+        }
+    }
+
     loadCategories = async() => {
         const response = await api.get("/indexcategory")
         this.setState({categories: response.data})
@@ -73,6 +79,20 @@ export default class Header extends Component {
         }
     }
 
+    handleOpenSearch = (e) => {
+        const searchForm = document.querySelector(".search-form");
+        searchForm.classList.toggle("search-form--active");
+    }
+
+    handleOpenMenuNav = (e) => {
+        const menuNav = document.querySelector(".menu-nav");
+        menuNav.classList.toggle("menu-nav--active");
+    }
+    handleOpenDrop = (e) => {
+        const dorpDown = document.querySelector(".dropdowncontent-div");
+        dorpDown.classList.toggle("dropdowncontent-div--active");
+    }
+
     render(){
         const {cartItems, categories} = this.state
         return (
@@ -95,24 +115,12 @@ export default class Header extends Component {
                 </div>
                 <section className="menu-section">
                     <div className="header-menu-div">
-                        <div className="menusearch-div">
-                            <div>
-                                <span><Link to="/"><img src={pp} style={{width:"160px", height:"90px", position:"relative", top:"10px"}}></img></Link></span>
-                            </div>
-                            <form onSubmit={this.handleSubmit}>
-                                <input onChange={e=> this.setState({search: e.target.value})} placeholder="o que você procura?"></input>
-                                <button id="searchicon" type="submit"></button>
-                            </form>
-                            <div className="cart-div">
-                                <Link to="/cart"><img src={shopImg}></img></Link>
-                                <Link href="/cart"><strong>carrinho ({cartItems.length})</strong></Link>
-                                
-                            </div>
-                        </div>
                         <div className="menu-nav">
-                            <Link id="home" to="/">Página principal</Link>
+                            <span style={{zIndex:"20"}}>
+                                <Link id="home" to="/">Página principal</Link>
+                            </span>
                             <div className="ferromadeiradrop-div dropdown-div">
-                                <button>Móveis ferro e madeira <FaChevronDown size={12}/></button>
+                                <button onClick={this.handleOpenDrop}>Móveis ferro e madeira</button>
                                 <div className="dropdowncontent-div">
                                     <Link to="/moveis">todos</Link>
                                     {categories.map(category => {
@@ -123,14 +131,39 @@ export default class Header extends Component {
                                 </div>
                             </div>
                             <div className="servicos-div dropdown-div">
-                                <button>Serviços <FaChevronDown size={12}/></button>
+                                <button>Serviços</button>
                                 <div className="dropdowncontent-div">
                                     <Link>Link</Link>
                                     <Link>Link</Link>
                                     <Link>Link</Link>
                                 </div>
                             </div>
+                            
+                            <div className="overlay-menu"></div>
                         </div>
+                        <div className="menusearch-div">
+                            <button onClick={this.handleOpenMenuNav} className="svg-button">
+                                <svg viewBox="0 0 100 80" width="30" height="40">
+                                    <rect width="100" height="10"></rect>
+                                    <rect y="30" width="100" height="10"></rect>
+                                    <rect y="60" width="100" height="10"></rect>
+                                </svg>
+                            </button>
+                            <div>
+                                <span><Link to="/"><img src={pp}></img></Link></span>
+                            </div>
+                            <form onSubmit={this.handleSubmit} className="search-form">
+                                <input onChange={e=> this.setState({search: e.target.value})} placeholder="o que você procura?"></input>
+                                <button className="searchicon" type="submit"></button>
+                            </form>
+                            <button onClick={this.handleOpenSearch} type="button" id="searchicon-id" className="searchicon"></button>
+                            <div className="cart-div">
+                                <Link to="/cart"><img src={shopImg}></img></Link>
+                                <Link href="/cart"><strong>carrinho ({cartItems.length})</strong></Link>
+                                
+                            </div>
+                        </div>
+                        
                     </div>
                 </section>
                     <div className="modalheader">
