@@ -112,6 +112,9 @@
     padding: 5px 10px;
 
 }
+.iconsearch{
+    display: none;
+}
 .searchicon::after{
     font-family: "Font Awesome 5 free"; font-weight: 900; content: "\f002";
 } 
@@ -135,6 +138,10 @@
 .menusearch-div .cart-div a img {
     width: 25px;
     height: 25px;
+}
+
+.svg-button{
+    display: none;
 }
 
 .menu-nav{
@@ -324,12 +331,19 @@
 
     }
 
+    .container-header{
+        max-width: 100%;
+    }
+
     .header-menu-div{
         flex-direction: row;
         z-index: 100;
         background-color: white;
     }
-    
+
+    .iconsearch{
+        display: block;
+    }
 
     .header-menu-div .menu-nav{
         flex-direction: column;
@@ -376,20 +390,20 @@
     
     .search-form {
         position: absolute;
-        top: 0px;
+        top: -100px;
         z-index: 11;
         opacity: 0;
         width: 0;
-        right: 0;
-        transition: width 0.5s, opacity 0.2s, top 0.2s;
+        transition: width 0.5s, opacity 0.1s, top 0.3s;
         
     }
 
     .search-form--active{
         top: 90px;
         opacity: 1;
+        right: 0;
         width: 100%;
-        transition: opacity 0.4s, top 0.1s;
+        transition: opacity 0.3s, top 0.1s;
     }
 
     .menusearch-div form input{
@@ -407,6 +421,7 @@
         background-color: white;
         border-right: 1px solid black;
         padding: 0 5px;
+        display: block;
     }
     .cart-div{        
         display: flex;

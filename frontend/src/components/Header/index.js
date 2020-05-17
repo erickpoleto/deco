@@ -131,7 +131,7 @@ export default class Header extends Component {
                                 </div>
                             </div>
                             <div className="servicos-div dropdown-div">
-                                <button>Serviços</button>
+                                <button onClick={this.handleOpenDrop}>Serviços</button>
                                 <div className="dropdowncontent-div">
                                     <Link>Link</Link>
                                     <Link>Link</Link>
@@ -156,7 +156,7 @@ export default class Header extends Component {
                                 <input onChange={e=> this.setState({search: e.target.value})} placeholder="o que você procura?"></input>
                                 <button className="searchicon" type="submit"></button>
                             </form>
-                            <button onClick={this.handleOpenSearch} type="button" id="searchicon-id" className="searchicon"></button>
+                            <button onClick={this.handleOpenSearch} type="button" id="searchicon-id" className="searchicon iconsearch"></button>
                             <div className="cart-div">
                                 <Link to="/cart"><img src={shopImg}></img></Link>
                                 <Link href="/cart"><strong>carrinho ({cartItems.length})</strong></Link>

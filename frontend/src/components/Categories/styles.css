@@ -29,6 +29,9 @@
 }
 
 @media(max-width: 700px){
+    .category-list{
+        margin-left: 0;
+    }
     .category-list li{
         width: 100%;
     }

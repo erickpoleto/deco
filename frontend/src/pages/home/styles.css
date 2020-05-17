@@ -65,6 +65,7 @@
 
 @media(max-width:700px){
     .home-container {
+        width: 100%;
     }
     .carousel-div{
         width: 100%;
