@@ -167,11 +167,8 @@ export default class Product extends Component {
                     <section className="desc-section">
                         <div className="desc-div">
                             <h5>{product.name} <b>(Solicite uma consultoria para mais informações!)</b></h5>
-                            <p>Estrutura: <strong>{product.estrutura}</strong></p>
-                            <p>Tampo: <strong>{product.tampo}</strong></p>
-                            <p>Largura: <strong>{product.largura}cm</strong></p>
-                            <p>Altura: <strong>{product.altura}cm</strong></p>
-                            <p>Profundidade: <strong>{product.profundidade}cm</strong></p>
+                            <p>Largura: <strong>{product.largura}</strong></p>
+                            <p>Altura: <strong>{product.altura}</strong></p>
                             <p>{product.desc}</p>
                         </div>
                     </section>
