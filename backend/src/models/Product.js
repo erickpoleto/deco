@@ -12,18 +12,7 @@ const ProductSchema = new mongoose.Schema({
         required: true,
     },
 
-    estrutura: {
-        type: String,
-        required: true
-    },
-    tampo: {
-        type: String,
-        required: true
-    },
     largura: {
-        type: Number,
-    },
-    profundidade: {
         type: Number,
     },
     altura: {

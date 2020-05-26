@@ -24,7 +24,7 @@ routes.post('/session', sessionController.create);
 //product
 routes.post('/newproduct', authMiddleware, productController.create)
 routes.put('/productupdate/:id', authMiddleware, productController.productUpdate)
-routes.post('/products', productController.indexSearch)
+routes.get('/products', productController.indexSearch)
 routes.get('/recentproducts', productController.indexRecent)
 routes.get('/product/:id', productController.indexProduct)
 routes.delete('/deleteproduct', authMiddleware, productController.delete)
@@ -39,8 +39,7 @@ routes.delete('/deleteAll', imagesController.delete);
 //category
 routes.post('/newcategory', authMiddleware, categoryController.create)
 routes.get('/indexcategory', categoryController.index)
-routes.post('/newstructcategory', authMiddleware, categoryController.createStruct)
-routes.get('/indexstructcategory', categoryController.indexStruct)
+routes.delete('/deletecategory', categoryController.deleteCategory)
 
 //comments
 

@@ -27,8 +27,7 @@ export default class Home extends Component {
     loadProducts = async () => {
         const response = await api.get(`/recentproducts`);
         const categories = await api.get('/indexcategory');
-        const structCategories = await api.get('/indexstructcategory');
-        this.setState({products: response.data, categories:categories.data, structCategories:structCategories.data})
+        this.setState({products: response.data, categories:categories.data})
     }
 
     loadImagesCarousel = async() => {
@@ -41,7 +40,7 @@ export default class Home extends Component {
 
     render(){
         
-        const {products,imagesCarousel, categories, structCategories, productInfo, page} = this.state;
+        const {products,imagesCarousel, categories, productInfo, page} = this.state;
         return( 
             <div>
                 <Header {...this.props}></Header>
@@ -74,9 +73,9 @@ export default class Home extends Component {
                     </header>
                     <main>
                         <div className="main-div">
-                            <Categories handleCategory={this.handleCategory} categories={categories} structCategories={structCategories}></Categories>
+                            <Categories handleCategory={this.handleCategory} categories={categories}></Categories>
                             <div>
-                                <h2>Móveis Adicionados recentemente</h2>
+                                <h2 style={{marginLeft: "10px" }}>Produtos Adicionados Recentemente</h2>
                                 <Products value={this.state.products}></Products>
                             </div>
                         </div>

@@ -40,7 +40,7 @@ export default class Moveis extends Component{
         const data = {
             sortOrd : this.state.sortOrd
         }
-        const response = await api.post(`/products?page=${page}&${this.state.search.replace("?", "")}`, data)
+        const response = await api.get(`/products?page=${page}&${this.state.search.replace("?", "")}`, data)
         const {docs, ...productsInfo} = response.data
         this.setState({products: docs, productsInfo})
         
@@ -48,8 +48,7 @@ export default class Moveis extends Component{
 
     loadCategories = async() => {
         const response = await api.get("/indexcategory");
-        const structCategories = await api.get("indexstructcategory")
-        this.setState({categories: response.data, structCategories: structCategories.data})
+        this.setState({categories: response.data})
     }
 
     handleCategory = async(e)=> {
@@ -76,7 +75,7 @@ export default class Moveis extends Component{
 
     render(){
         
-        const {categories,structCategories, products, productsInfo, search} = this.state
+        const {categories, products, productsInfo, search} = this.state
 
         return(
             <div>
@@ -88,7 +87,7 @@ export default class Moveis extends Component{
                             <Link style={{marginLeft:"5px"}} to="/"> <b>></b> {search.replace(/[?](search|category)[=]/, "")}</Link>
                         </div>
                         <div className="main-div">
-                            <Categories handleCategory={this.handleCategory} categories={categories} structCategories={structCategories}>
+                            <Categories handleCategory={this.handleCategory} categories={categories}>
                                 
                             </Categories>
                             <div className="products-div">

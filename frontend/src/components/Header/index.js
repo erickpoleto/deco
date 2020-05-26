@@ -120,7 +120,7 @@ export default class Header extends Component {
                                 <Link id="home" to="/">Página principal</Link>
                             </span>
                             <div className="ferromadeiradrop-div dropdown-div">
-                                <button onClick={this.handleOpenDrop}>Móveis ferro e madeira</button>
+                                <button onClick={this.handleOpenDrop}>Estruturas Ferro</button>
                                 <div className="dropdowncontent-div">
                                     <Link to="/moveis">todos</Link>
                                     {categories.map(category => {
@@ -128,14 +128,6 @@ export default class Header extends Component {
                                             <Link to={`/moveis?category=${category.name}`}>{category.name}</Link>
                                         )
                                     })}
-                                </div>
-                            </div>
-                            <div className="servicos-div dropdown-div">
-                                <button onClick={this.handleOpenDrop}>Serviços</button>
-                                <div className="dropdowncontent-div">
-                                    <Link>Link</Link>
-                                    <Link>Link</Link>
-                                    <Link>Link</Link>
                                 </div>
                             </div>
                             

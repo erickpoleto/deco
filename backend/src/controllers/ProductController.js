@@ -7,12 +7,10 @@ module.exports = {
 
     async create(req, res) {
 
-        const {name, category, estrutura, desc,
-            tampo, largura, profundidade, altura, preco, imageId} = req.body
+        const {name, category, largura, altura, preco, desc, imageId} = req.body
 
         try{    
-            const product = await Product.create({name:name, category:category, 
-            estrutura:estrutura, tampo:tampo, largura:largura, profundidade:profundidade,
+            const product = await Product.create({name:name, category:category, largura:largura,
             altura:altura, preco:preco, desc:desc,
             imageId: imageId});
             return res.json(product)

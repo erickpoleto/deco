@@ -19,16 +19,15 @@ export default class Categories extends Component{
     }
 
     handleParentState = async() => {
-        await this.setState({categories: this.props.categories, structCat: this.props.structCategories})
+        await this.setState({categories: this.props.categories})
 
     }
 
     render(){
-        const {categories, structCat} = this.state 
+        const {categories} = this.state 
         return(
             <div className="category-div">
                 <ul className="category-list">
-                    <li><b>Moveis Ferro e madeira</b></li>
                     {categories.map(category=>{
                         return(
                             <li>
@@ -37,17 +36,6 @@ export default class Categories extends Component{
                         )
                     })}
                     
-                </ul>
-                <ul className="category-list">
-                    <li><b>Estruturas Metálicas</b></li>
-                    {structCat.map(category=>{
-                        return(
-                            <li>
-                                <button id={category.name} onClick={this.props.handleCategory}>{category.name}</button>
-                            </li>
-                        )
-                    })
-                    }
                 </ul>
             </div>
         )
